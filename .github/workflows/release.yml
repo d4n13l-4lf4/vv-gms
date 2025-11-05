@@ -52,7 +52,7 @@ jobs:
         with:
             name: gms-${{ steps.osname.outputs.os_base }}${{ steps.osname.outputs.os_base == 'windows' && '.exe' || '' }}
             path: |
-              dist/gms-${{ steps.osname.outputs.os_base }}{{ steps.osname.outputs.os_base == 'windows' && '.exe' || '' }}
+              dist/gms-${{ steps.osname.outputs.os_base }}${{ steps.osname.outputs.os_base == 'windows' && '.exe' || '' }}
   release:
     needs: build
     runs-on: ubuntu-latest
