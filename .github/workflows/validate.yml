@@ -33,8 +33,6 @@ jobs:
       uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-    - name: Build package
-      run: hatch run build:package
     - name: Zip coverage folder
       run: |
         zip -r htmlcov.zip htmlcov
