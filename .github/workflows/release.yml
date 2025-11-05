@@ -32,6 +32,7 @@ jobs:
 
       - name: Set OS name without '-latest'
         id: osname
+        shell: bash
         run: |
           OS_BASE="${{ matrix.os }}"
           OS_BASE="${OS_BASE%-latest}"
