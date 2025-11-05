@@ -30,6 +30,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set OS name without '-latest'
+        id: osname
+        run: |
+          OS_BASE="${{ matrix.os }}"
+          OS_BASE="${OS_BASE%-latest}"
+          echo "os_base=$OS_BASE" >> $GITHUB_OUTPUT
+
       - name: Install Hatch
         uses: pypa/hatch@install
 
@@ -42,9 +49,9 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-            name: gms-${{ matrix.os }}
+            name: gms-${{ steps.osname.outputs.os_base }}
             path: |
-              dist/gms-cli
+              dist/gms-cli${{ steps.osname.outputs.os_base == 'windows' && '.exe' || '' }}
   release:
     needs: build
     runs-on: ubuntu-latest
