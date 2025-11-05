@@ -50,7 +50,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-            name: gms-${{ steps.osname.outputs.os_base }}
+            name: gms-${{ steps.osname.outputs.os_base }}${{ steps.osname.outputs.os_base == 'windows' && '.exe' || '' }}
             path: |
               dist/gms-cli${{ steps.osname.outputs.os_base == 'windows' && '.exe' || '' }}
   release:
@@ -66,9 +66,10 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}
-          prerelease: true
+          prerelease: ${{ contains(github.ref_name, 'rc') }}
           generate_release_notes: true
           files: |
-            dist/*
+            ./dist/*.exe
+            ./dist/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
