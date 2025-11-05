@@ -49,32 +49,18 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Download artifacts
+      - name: Download all artifacts
         uses: actions/download-artifact@v4
         with:
-          name: gms-ubuntu-latest
-          path: dist
-      - name: Download Windows artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: gms-windows-latest
-          path: dist
-      - name: Download macOS artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: gms-macos-latest
-          path: dist
+          path: ./dist
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload release assets
-        uses: softprops/action-gh-release@v1
-        with:
-          files: dist/*
+          prerelease: true
+          generate_release_notes: true
+          files: |
+            dist/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
