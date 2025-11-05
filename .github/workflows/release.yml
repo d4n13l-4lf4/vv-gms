@@ -45,14 +45,14 @@ jobs:
         run: hatch env create build
 
       - name: Build executable
-        run: hatch run build:package
+        run: hatch run build:package -- --name gms-${{ steps.osname.outputs.os_base }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
             name: gms-${{ steps.osname.outputs.os_base }}${{ steps.osname.outputs.os_base == 'windows' && '.exe' || '' }}
             path: |
-              dist/gms-cli${{ steps.osname.outputs.os_base == 'windows' && '.exe' || '' }}
+              dist/gms-${{ steps.osname.outputs.os_base }}{{ steps.osname.outputs.os_base == 'windows' && '.exe' || '' }}
   release:
     needs: build
     runs-on: ubuntu-latest

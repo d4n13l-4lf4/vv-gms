@@ -46,7 +46,7 @@ dependencies = [
 ]
 
 [tool.hatch.envs.build.scripts]
-package = "pyinstaller src/vv_gms/cli.py --name gms-cli --onefile"
+package = "pyinstaller src/vv_gms/cli.py --onefile {args}"
 
 [tool.hatch.envs.types]
 extra-dependencies = [
