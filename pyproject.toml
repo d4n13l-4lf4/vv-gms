@@ -66,7 +66,7 @@ extra-dependencies = [
 ]
 
 [tool.hatch.envs.hatch-test.scripts]
-run = "pytest{env:HATCH_TEST_ARGS}: {args} --cov --cov-append --cov-report=term-missing"
+run = "pytest{env:HATCH_TEST_ARGS}: {args} -v --cov --cov-append --cov-report=term-missing"
 run-cov = "coverage erase && coverage run -m pytest{env:HATCH_TEST_ARGS:} {args}"
 cov-combine = "coverage combine"
 cov-report = "coverage report && coverage xml && coverage html"

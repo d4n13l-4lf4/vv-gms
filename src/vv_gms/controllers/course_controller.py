@@ -13,4 +13,4 @@ class CourseController:
     def add_courses(self, filename: str):
         """Import courses from a CSV/TXT file."""
         self.__course_.add_courses(filename)
-        typer.echo(f"Added courses from {filename}")
+        typer.echo(f"List of courses added to the system.")

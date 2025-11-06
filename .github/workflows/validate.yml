@@ -29,7 +29,7 @@ jobs:
       uses: pypa/hatch@install
     - name: Validate
       run: |
-        hatch test --cover
+        hatch test --cover -- -v
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v5
       with:
