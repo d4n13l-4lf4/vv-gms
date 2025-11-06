@@ -1,4 +1,3 @@
-
 from typer.testing import CliRunner, Typer
 
 from vv_gms.controllers.course_controller import CourseController
