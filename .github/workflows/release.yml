@@ -22,7 +22,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest, macos-15-intel, windows-latest]
     name: Build on ${{ matrix.os }}
 
     steps:
@@ -34,8 +34,16 @@ jobs:
         id: osname
         shell: bash
         run: |
-          OS_BASE="${{ matrix.os }}"
-          OS_BASE="${OS_BASE%-latest}"
+          OS="${{ matrix.os }}"
+          if [[ "$OS" == "ubuntu-latest" ]]; then
+            OS_BASE="ubuntu"
+          elif [[ "$OS" == "macos-latest" ]]; then
+            OS_BASE="macos"
+          elif [[ "$OS" == "macos-15-intel" ]]; then
+            OS_BASE="macos-intel"
+          elif [[ "$OS" == "windows-latest" ]]; then
+            OS_BASE="windows"
+          fi
           echo "os_base=$OS_BASE" >> $GITHUB_OUTPUT
 
       - name: Install Hatch
