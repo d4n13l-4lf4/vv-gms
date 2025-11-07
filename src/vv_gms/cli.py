@@ -16,7 +16,9 @@ app = typer.Typer(help="Grading Management System CLI")
 filename = "db.json"
 dirs = PlatformDirs("gmscli", "DCE", "1.0")
 path = PlatformPath(dirs)
-db = create_db(path.get_user_data_filename(filename))
+db_filename = path.get_user_data_filename(filename)
+print(f"Storage at {db_filename}")
+db = create_db(db_filename)
 
 # Course commands initialization
 course_app = typer.Typer(help="Course management commands")

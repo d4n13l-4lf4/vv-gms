@@ -17,10 +17,11 @@ ids = [
 ]
 
 class TestCourseController:
-    @pytest.mark.parametrize("test_file,expected_output", [
+    @pytest.mark.parametrize("input_file,expected_output", [
         ("TC_ADD_COURSES_01.csv", "List of courses added to the system.")
     ], ids=ids)
-    def test_add_courses(self, test_file, expected_output, data_resolver, db):
+    def test_add_courses(self, input_file, expected_output, data_resolver, db):
+        # embed this into a fixture for the whole app
         course_repo = CourseRepo(db)
         course_converter = GenericConverter(Course)
         course_parser = GenericParser(course_converter)
@@ -30,7 +31,7 @@ class TestCourseController:
         app = controller.register(app)
 
         runner = CliRunner()
-        test_filename = data_resolver(["resources", "data"], test_file)
+        test_filename = data_resolver(["resources", "data"], input_file)
         result = runner.invoke(app, [test_filename])
         assert_that(result.output, equal_to(f"{expected_output}\n"))
         assert_that(result.exit_code, equal_to(0))
