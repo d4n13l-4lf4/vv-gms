@@ -57,6 +57,7 @@ jobs:
 
       - name: Zip executable
         if: vars.DEPLOY_MODE == '--onedir'
+        shell: bash
         run: |
           cd dist
           zip -r ../gms-${{ steps.osname.outputs.os_base }}.zip gms-${{ steps.osname.outputs.os_base }}
