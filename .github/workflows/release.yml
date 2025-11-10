@@ -55,10 +55,13 @@ jobs:
       - name: Build executable
         run: hatch run build:package -- ${{ vars.DEPLOY_MODE }} --name gms-${{ steps.osname.outputs.os_base }}
 
+      - name: List dist contents
+        run: ls -R dist
+
       - name: Zip executable
         if: vars.DEPLOY_MODE == '--onedir'
         run: |
-          zip -j gms-${{ steps.osname.outputs.os_base }}.zip dist/gms-${{ steps.osname.outputs.os_base }}
+          zip -j gms-${{ steps.osname.outputs.os_base }}.zip dist/
 
       - name: Upload EXE artifacts
         uses: actions/upload-artifact@v4
