@@ -58,7 +58,8 @@ jobs:
       - name: Zip executable
         if: vars.DEPLOY_MODE == '--onedir'
         run: |
-          zip -rj gms-${{ steps.osname.outputs.os_base }}.zip dist/gms-${{ steps.osname.outputs.os_base }}
+          cd dist
+          zip -r ../gms-${{ steps.osname.outputs.os_base }}.zip dist/gms-${{ steps.osname.outputs.os_base }}
 
       - name: Upload EXE artifacts
         uses: actions/upload-artifact@v4
