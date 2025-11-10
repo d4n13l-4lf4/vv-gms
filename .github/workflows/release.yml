@@ -53,14 +53,29 @@ jobs:
         run: hatch env create build
 
       - name: Build executable
-        run: hatch run build:package -- --name gms-${{ steps.osname.outputs.os_base }}
+        run: hatch run build:package -- ${{ env.DEPLOY_MODE }} --name gms-${{ steps.osname.outputs.os_base }}
 
-      - name: Upload artifacts
+      - name: Zip executable
+        if: env.DEPLOY_MODE == '--onedir'
+        run: |
+          zip -j gms-${{ steps.osname.outputs.os_base }}.zip dist/gms-${{ steps.osname.outputs.os_base }}
+
+      - name: Upload EXE artifacts
         uses: actions/upload-artifact@v4
+        if: env.DEPLOY_MODE == '--onefile'
         with:
             name: gms-${{ steps.osname.outputs.os_base }}${{ steps.osname.outputs.os_base == 'windows' && '.exe' || '' }}
             path: |
               dist/gms-${{ steps.osname.outputs.os_base }}${{ steps.osname.outputs.os_base == 'windows' && '.exe' || '' }}
+
+      - name: Upload ZIP artifacts
+        uses: actions/upload-artifact@v4
+        if: env.DEPLOY_MODE == '--onedir'
+        with:
+          name: gms-${{ steps.osname.outputs.os_base }}.zip
+          path: |
+            gms-${{ steps.osname.outputs.os_base }}.zip
+
   release:
     needs: build
     runs-on: ubuntu-latest

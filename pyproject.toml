@@ -47,7 +47,7 @@ dependencies = [
 ]
 
 [tool.hatch.envs.build.scripts]
-package = "pyinstaller src/vv_gms/main.py --onefile {args}"
+package = "pyinstaller src/vv_gms/main.py {args}"
 
 [tool.hatch.envs.types]
 extra-dependencies = [
