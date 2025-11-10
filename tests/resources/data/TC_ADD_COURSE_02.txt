@@ -1,0 +1,2 @@
+CourseID CourseName
+CS0001 Computing

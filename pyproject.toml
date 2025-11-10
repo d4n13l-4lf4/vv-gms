@@ -25,11 +25,12 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-    "typer==0.20.0"
+    "click==8.3.0",
+    "dacite==1.9.2"
 ]
 
 [project.scripts]
-gms-cli = "vv_gms.cli:app"
+gms-cli = "vv_gms.main:shell"
 
 [project.urls]
 Documentation = "https://github.com/d4n13l-4lf4/vv-gms#readme"
@@ -46,7 +47,7 @@ dependencies = [
 ]
 
 [tool.hatch.envs.build.scripts]
-package = "pyinstaller src/vv_gms/cli.py --onefile {args}"
+package = "pyinstaller src/vv_gms/main.py --onefile {args}"
 
 [tool.hatch.envs.types]
 extra-dependencies = [
@@ -63,15 +64,17 @@ extra-dependencies = [
 ]
 
 [tool.hatch.envs.hatch-test.scripts]
-run = "pytest{env:HATCH_TEST_ARGS}: {args} --cov --cov-append --cov-report=term-missing"
-run-cov = "coverage erase && coverage run -m pytest{env:HATCH_TEST_ARGS:} {args}"
+run = "pytest{env:HATCH_TEST_ARGS}: {args} -v --cov --cov-append --cov-report=term-missing"
+run-cov = "coverage erase && coverage run -m pytest{env:HATCH_TEST_ARGS:} -v {args}"
 cov-combine = "coverage combine"
 cov-report = "coverage report && coverage xml && coverage html"
 
 [tool.hatch.envs.dev]
+from = "default"
 dependencies = [
-    "typer==0.20.0",
-    "PyHamcrest==2.1.0"
+    "PyHamcrest==2.1.0",
+    "pytest",
+    "pytest-cov"
 ]
 
 [tool.coverage.run]
