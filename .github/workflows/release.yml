@@ -56,14 +56,14 @@ jobs:
         run: hatch run build:package -- ${{ vars.DEPLOY_MODE }} --name gms-${{ steps.osname.outputs.os_base }}
 
       - name: Zip executable (MacOS and Linux)
-        if: vars.DEPLOY_MODE == '--onedir' && steps.osname.outputs.os_base != 'windows-latest'
+        if: vars.DEPLOY_MODE == '--onedir' && steps.osname.outputs.os_base != 'windows'
         shell: bash
         run: |
           cd dist
           zip -r ../gms-${{ steps.osname.outputs.os_base }}.zip gms-${{ steps.osname.outputs.os_base }}
 
       - name: Zip executable (Windows)
-        if: vars.DEPLOY_MODE == '--onedir' && steps.osname.outputs.os_base == 'windows-latest'
+        if: vars.DEPLOY_MODE == '--onedir' && steps.osname.outputs.os_base == 'windows'
         run: |
           cd dist
           Compress-Archive -Path gms-${{ steps.osname.outputs.os_base }} -DestinationPath ../gms-${{ steps.osname.outputs.os_base }}.zip
