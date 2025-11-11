@@ -1,4 +1,8 @@
+import json
+import os
+
 from click import prompt, echo
+from pathlib import Path
 
 from vv_gms.dani.exception.custom import CustomException
 from vv_gms.dani.models.report import Report
@@ -11,6 +15,25 @@ from vv_gms.dani.utils.stats.statistics import calculate_statistics
 from vv_gms.dani.utils.stats.statistics import calculate_student_grade
 from vv_gms.dani.validation.parameter import validate
 from vv_gms.dani.validation.validator import not_empty
+from dataclasses import asdict
+
+
+def dump_report_data(report: Report, writer):
+    writer(f"Course: {report.course['course_id']} - {report.course['course_name']}")
+    writer(f"Teacher {report.teacher['teacher_name']}")
+    writer(f"Average: {report.stats.average}")
+    writer(f"Lowest: {report.stats.lowest}")
+    writer(f"Highest: {report.stats.best}")
+    writer("Student Final Grades:")
+    for student in report.grades:
+        writer(f"\t{student.student_id} {student.student_name}: {student.grade}")
+
+
+def write_report(report: Report, outfile: str):
+    filename = Path.cwd() / 'data' / outfile
+    filename.parent.mkdir(parents=True, exist_ok=True)
+    with open(filename, mode='w', encoding='utf8') as file:
+        dump_report_data(report, file.wri)
 
 
 class ReportService:
@@ -43,17 +66,16 @@ class ReportService:
 
 class ReportController:
     def __init__(self, report_service: ReportService):
-        self.__report_service = report_service
+        self.__report_service_ = report_service
 
     def generate_report(self):
         course_id = prompt('Enter course id')
-        report = self.__report_service.generate_report(course_id)
-        echo(f"Course: {report.course['course_id']} - {report.course['course_name']}")
-        echo(f"Teacher {report.teacher['teacher_name']}")
-        echo(f"Average: {report.stats.average}")
-        echo(f"Lowest: {report.stats.lowest}")
-        echo(f"Highest: {report.stats.best}")
-        echo("Student Final Grades:")
-        for student in report.grades:
-            echo(f"\t{student.student_id} {student.student_name}: {student.grade}")
+        report = self.__report_service_.generate_report(course_id)
+
+        filename = Path.cwd() / 'report' / 'output.json'
+        filename.parent.mkdir(parents=True, exist_ok=True)
+        with open(filename, mode='w', encoding='utf8') as file:
+            file.write(json.dumps(asdict(report)))
+
+        dump_report_data(report, echo)
 

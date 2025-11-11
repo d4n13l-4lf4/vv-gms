@@ -4,6 +4,7 @@ import pytest
 from click.testing import CliRunner
 
 from tests.util import find_command_option, get_input, prepare_input
+from vv_gms.constant import CMD_ADD_COURSES, CMD_EXIT
 from vv_gms.main import shell, commands
 from hamcrest import assert_that, equal_to, has_length
 
@@ -28,8 +29,8 @@ class TestDani:
     ], ids=ids)
     @patch('vv_gms.main.load_data')
     def test_add_courses(self, load_data, input_data, expected_output, get_filename):
-        cmd_option = find_command_option(commands, 'Add courses')
-        exit_option = find_command_option(commands, 'Exit')
+        cmd_option = find_command_option(commands, CMD_ADD_COURSES)
+        exit_option = find_command_option(commands, CMD_EXIT)
         load_data.return_value = {'courses': {}, 'assignments': {}, 'grades': {}, 'students': {}, 'course_teacher': {}, 'teachers': {}}
         prepared_input = prepare_input(input_data, get_filename)
         prepared_input = get_input([cmd_option] + prepared_input + [exit_option])
