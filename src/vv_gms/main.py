@@ -3,16 +3,17 @@ import click
 from click import prompt, echo
 from typing import  Dict
 
-from vv_gms.constant import CMD_ADD_COURSES
+from vv_gms.constant import CMD_ADD_COURSES, CMD_EXIT, CMD_GENERATE_REPORT, CMD_CALCULATE_STATISTICS, \
+    CMD_ADD_ASSIGNMENT, CMD_REMOVE_COURSES
 from vv_gms.dani.bootstrap import bootstrap
 
 commands = {
     '1': CMD_ADD_COURSES,
-    '2': 'Remove courses',
-    '3': 'Add assignment',
-    '4': 'Calculate statistics',
-    '5': 'Generate report',
-    '6': 'Exit'
+    '2': CMD_REMOVE_COURSES,
+    '3': CMD_ADD_ASSIGNMENT,
+    '4': CMD_CALCULATE_STATISTICS,
+    '5': CMD_GENERATE_REPORT,
+    '6': CMD_EXIT
 }
 
 def load_data():
