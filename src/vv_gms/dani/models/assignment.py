@@ -1,10 +1,11 @@
 from dataclasses import dataclass
+from decimal import Decimal
 
 @dataclass(frozen=True)
 class Assignment:
     course_id: str
     assignment_name: str
-    weight: int
+    weight: Decimal
 
     def __hash__(self):
         return hash(self.assignment_name)

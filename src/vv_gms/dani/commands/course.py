@@ -1,4 +1,4 @@
-from typing import Iterator
+from typing import Iterator, Any, Generator
 
 from click import prompt, echo
 
@@ -25,19 +25,18 @@ class CourseService:
         valid_courses = self.__check_course_(courses)
         self.__course_repo_.save_course(valid_courses)
 
-    def __check_course_(self, courses: Iterator[Course]) -> Iterator[Course]:
+    def __check_course_(self, courses: Iterator[Course]) -> Generator[dict[str, str], None, None]:
         for course in courses:
-            print("COURSE")
             found = self.__course_repo_.get_course(course.course_id)
             if found is not None:
-                raise CustomException(f"{found.course_id} already exists.")
-            yield course
+                raise CustomException(f"{course.course_id} already exists.")
+            yield { "course_id": course.course_id, "course_name": course.course_name }
 
     def remove_course(self, course_id: str):
         course = self.__course_repo_.get_course(course_id)
         if course is None:
             raise CustomException('CourseID not found.')
-        assignments = self.__assignment_repo_.get_assignments_by_course_id(course.course_id)
+        assignments = self.__assignment_repo_.get_assignments_by_course_id(course_id)
         if assignments is not None:
             raise CustomException('Cannot delete course with active assignments or grades.')
         self.__course_repo_.remove_course(course_id)

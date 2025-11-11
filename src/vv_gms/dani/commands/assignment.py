@@ -1,3 +1,4 @@
+from decimal import Decimal
 from functools import reduce
 
 from click import prompt, echo
@@ -20,8 +21,9 @@ class AssignmentService:
         'course_id': not_empty('Invalid arguments. Use: add_assignment <CourseID> <AssignmentName> [<Weight>]'),
         'assignment_name': not_empty('Invalid arguments. Use: add_assignment <CourseID> <AssignmentName> [<Weight>]'),
     })
-    def add_assignment(self, course_id: str, assignment_name: str, weight: int):
+    def add_assignment(self, course_id: str, assignment_name: str, weight: str):
         course = self.__course_repo_.get_course(course_id)
+        decimal_weight = Decimal(weight)
         if course is None:
             raise CustomException('CourseID not found.')
         assignment = self.__assignment_repo_.get_assignment_by_course_id_and_name(course_id, assignment_name)
@@ -29,9 +31,10 @@ class AssignmentService:
             raise CustomException('Assignment already exist in this course.')
 
         assignments = self.__assignment_repo_.get_assignments_by_course_id(course_id)
-        current_weight = reduce(lambda acc, asg: asg.weight + acc,assignments, 0)
-        if current_weight + weight > 100:
+        current_weight = reduce(lambda acc, asg: asg['weight'] + acc, assignments, 0)
+        if current_weight + decimal_weight > 100:
             raise CustomException("Invalid total assignment weights can't exceed 100.")
+        self.__assignment_repo_.save_assignment(course_id, assignment_name, decimal_weight)
 
 
 class AssignmentController:
@@ -44,3 +47,4 @@ class AssignmentController:
         assignment_name = prompt('Enter assignment name')
         weight = prompt('Enter weight value')
         self.__assignment_service_.add_assignment(course_id, assignment_name, weight)
+        echo(f"Assignment {assignment_name} added to course {course_id} with weight {weight}")

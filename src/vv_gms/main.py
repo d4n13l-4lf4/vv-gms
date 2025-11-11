@@ -17,10 +17,64 @@ commands = {
 
 def load_data():
     return {
-        'courses': {
-            'CS0001': 'Computing'
+        "courses": {
+            "CS0001": {
+                "course_id": "CS0001",
+                "course_name": "Computing"
+            }
         },
-        'assignments': {}
+        "assignments": {
+            "CS0001": [
+                {
+                    "course_id": "CS0001",
+                    "assignment_name": "Test 01",
+                    "weight": 80
+                },
+                {
+                    "course_id": "CS0001",
+                    "assignment_name": "Test 02",
+                    "weight": 20
+                }
+            ]
+        },
+        "grades": {
+            "CS0001": [
+                {
+                    "student_id": "STD_ID_0001",
+                    "assignment_name": "Test 01",
+                    "grade": 100
+                },
+                {
+                    "student_id": "STD_ID_0001",
+                    "assignment_name": "Test 02",
+                    "grade": 100
+                },
+                {
+                    "student_id": "STD_ID_0002",
+                    "assignment_name": "Test 02",
+                    "grade": 100
+                }
+            ]
+        },
+        "students": {
+            "STD_ID_0001": {
+                "student_id": "STD_ID_0001",
+                "student_name": "Student Name 01"
+            },
+            "STD_ID_0002": {
+                "student_id": "STD_ID_0002",
+                "student_name": "Student Name 02"
+            }
+        },
+        "course_teacher": {
+            "CS0001": "TEACH_001"
+        },
+        "teachers": {
+            "TEACH_001": {
+                "teacher_id": "TEACH_001",
+                "teacher_name": "Teacher Name 01"
+            }
+        }
     }
 
 
@@ -51,9 +105,9 @@ def shell():
         elif value == "3": # Need to modify
             facade.add_assignment()
         elif value == "4":
-            echo("Calc Stats")
+            facade.calc_stats()
         elif value == "5":
-            echo("Generate Report")
+            facade.generate_report()
         elif value == "6":
             echo("Exit")
             break
