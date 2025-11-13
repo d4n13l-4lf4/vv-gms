@@ -1,0 +1,2 @@
+TEST_CASE_ID,CMD,CONTEXT,INPUTS,EXPECTED_OUTPUTS
+TC_REPORT_01,Generate report,TC_REPORT.json,CS0001,"Course: CS0001 - Computing|Teacher Teacher Name 01|Average: 60.0|Lowest: 20.0|Highest: 100.0|Student Final Grades:|STD_ID_0002 Student Name 02: 20.0|STD_ID_0001 Student Name 01: 100.0"

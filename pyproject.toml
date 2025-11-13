@@ -61,7 +61,8 @@ check = "mypy --install-types --non-interactive {args:src/vv_gms tests}"
 extra-dependencies = [
     "PyHamcrest==2.1.0",
     "pytest",
-    "pytest-cov"
+    "pytest-cov",
+    "pytest-subtests"
 ]
 
 [tool.hatch.envs.hatch-test.scripts]

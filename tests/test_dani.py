@@ -2,11 +2,12 @@ from unittest.mock import patch
 
 import pytest
 from click.testing import CliRunner
+from hamcrest import assert_that, equal_to
 
 from tests.util import find_command_option, get_input, prepare_input
 from vv_gms.constant import CMD_ADD_COURSES, CMD_EXIT
 from vv_gms.main import shell, commands
-from hamcrest import assert_that, equal_to, has_length
+
 
 ids = [
     'TC_ADD_COURSE_01',
@@ -16,7 +17,9 @@ ids = [
     'TC_ADD_COURSE_05',
 ]
 
+
 class TestDani:
+
     @pytest.mark.parametrize("input_data,expected_output", [
         (['file:TC_ADD_COURSE_01.csv'], 'List of courses added to the system.'),
         # Test case failed due to already present memory.

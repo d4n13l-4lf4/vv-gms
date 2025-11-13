@@ -1,5 +1,4 @@
 import json
-import os
 
 from click import prompt, echo
 from pathlib import Path
@@ -27,13 +26,6 @@ def dump_report_data(report: Report, writer):
     writer("Student Final Grades:")
     for student in report.grades:
         writer(f"\t{student.student_id} {student.student_name}: {student.grade}")
-
-
-def write_report(report: Report, outfile: str):
-    filename = Path.cwd() / 'data' / outfile
-    filename.parent.mkdir(parents=True, exist_ok=True)
-    with open(filename, mode='w', encoding='utf8') as file:
-        dump_report_data(report, file.wri)
 
 
 class ReportService:
