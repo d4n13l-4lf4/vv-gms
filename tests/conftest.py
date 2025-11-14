@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 from typing import Callable, Counter
 from unittest.mock import patch
 
@@ -9,11 +10,11 @@ from hamcrest import assert_that, has_entry, equal_to
 from tests.util import read_cases, find_command_option, prepare_input, get_input, write_lines, temporary_file
 from vv_gms.constant import CMD_EXIT
 from vv_gms.main import commands, shell
-from shutil import copy
+from shutil import copy, rmtree
 
 
 def pytest_addoption(parser):
-    parser.addoption('--out_file', action='store', help='Output test case results')
+    parser.addoption('--show_report', action='store', help='Output test case results')
 
 
 
@@ -31,6 +32,8 @@ def get_filename() -> Callable[[str, str], str]:
 def runner(get_filename, request):
     def __inner__(subtests, test_case_file: str):
         test_cases = read_cases(test_case_file)
+        out_filename = Path(get_filename('report', 'test.json'))
+        rmtree(out_filename.parent, ignore_errors=True)
         for idx, test_case in enumerate(test_cases):
             with (subtests.test(msg=test_case['TEST_CASE_ID'], i=idx),
                   temporary_file(prefix=f"test_case_{test_case['TEST_CASE_ID']}_", suffix='.json') as json_file,
@@ -40,7 +43,7 @@ def runner(get_filename, request):
                 context_file = get_filename(test_case['CONTEXT'], 'context')
                 inputs = test_case['INPUTS'].split('|')
 
-                if context_file:
+                if test_case['CONTEXT']:
                     copy(context_file, json_file)
 
                 prepared_input = prepare_input(inputs, get_filename)
@@ -51,7 +54,7 @@ def runner(get_filename, request):
                 out_lines = [line.strip().strip(os.linesep) for line in result.output.splitlines()]
                 output_lines = Counter(out_lines)
 
-                out_file = request.config.getoption('out_file')
+                out_file = request.config.getoption('show_report')
                 if out_file:
                     out_filename = get_filename(test_case['TEST_CASE_ID'], 'report') + '.txt'
                     write_lines(out_filename, out_lines, result.exception)

@@ -8,6 +8,7 @@ from vv_gms.dani.exception.decorator import catch_error
 from vv_gms.dani.models.course import Course
 from vv_gms.dani.repository.assignment import AssignmentRepo
 from vv_gms.dani.repository.course import CourseRepository
+from vv_gms.dani.repository.grade import GradeRepository
 from vv_gms.dani.utils.parsers.base import FileParser
 
 
@@ -15,11 +16,13 @@ class CourseService:
     def __init__(self,
                  file_parser: FileParser[Course],
                  course_repo: CourseRepository,
-                 assignment_repo: AssignmentRepo
+                 assignment_repo: AssignmentRepo,
+                 grade_repo: GradeRepository
                  ):
         self.__course_repo_ = course_repo
         self.__file_parser_ = file_parser
         self.__assignment_repo_ = assignment_repo
+        self.__grades_repo_ = grade_repo
 
     def add_courses(self, filename: str):
         courses = self.__file_parser_.parse(filename)
@@ -37,9 +40,12 @@ class CourseService:
         course = self.__course_repo_.get_course(course_id)
         if course is None:
             raise CustomException('CourseID not found.')
+        grades = self.__grades_repo_.get_grades_by_course_id(course_id)
         assignments = self.__assignment_repo_.get_assignments_by_course_id(course_id)
-        if assignments is not None:
+
+        if grades or assignments:
             raise CustomException('Cannot delete course with active assignments or grades.')
+
         self.__course_repo_.remove_course(course_id)
 
 

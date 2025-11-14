@@ -1,0 +1,47 @@
+{
+  "courses": {
+    "CS101": {
+      "course_id": "CS101",
+      "course_name": "Computing"
+    }
+  },
+  "assignments": {
+    "CS101": [
+      {
+        "course_id": "CS101",
+        "assignment_name": "Test 01",
+        "weight": 80
+      },
+      {
+        "course_id": "CS101",
+        "assignment_name": "Test 02",
+        "weight": 20
+      }
+    ]
+  },
+  "grades": {
+    "CS101": [
+      {
+        "student_id": "STD_ID_0001",
+        "assignment_name": "Test 01",
+        "grade": 100
+      },
+      {
+        "student_id": "STD_ID_0001",
+        "assignment_name": "Test 02",
+        "grade": 100
+      },
+      {
+        "student_id": "STD_ID_0002",
+        "assignment_name": "Test 02",
+        "grade": 100
+      }
+    ]
+  },
+  "students": {
+  },
+  "course_teacher": {
+  },
+  "teachers": {
+  }
+}

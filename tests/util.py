@@ -40,7 +40,8 @@ def get_context(context_file: str) -> Dict[str, str]:
         return json.load(f)
 
 def write_lines(file: str, out_lines: List[str], exception):
-    Path(file).parent.mkdir(parents=True, exist_ok=True)
+    filepath = Path(file)
+    filepath.parent.mkdir(parents=True, exist_ok=True)
 
     with open(file, mode='w', encoding='utf-8') as f:
         [f.write(line + os.linesep) for line in out_lines]
