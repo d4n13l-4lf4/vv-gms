@@ -1,0 +1,7 @@
+TEST_CASE_ID,CMD,CONTEXT,INPUTS,EXPECTED_OUTPUTS
+TC_ADD_ASSIGNMENT_01,Add assignment,TC_ADD_ASSIGNMENT_01.json,"CS101|CaseStudy|20","Assignment CaseStudy added to course CS101 with weight 20"
+TC_ADD_ASSIGNMENT_02,Add assignment,TC_ADD_ASSIGNMENT_02.json,"CS101|CaseStudy|20","Error: Assignment already exists in this course."
+TC_ADD_ASSIGNMENT_03,Add assignment,TC_ADD_ASSIGNMENT_01.json,"CS101|Project|-10","Error: Invalid weight value. Must be integer 0-100."
+TC_ADD_ASSIGNMENT_04,Add assignment,TC_ADD_ASSIGNMENT_02.json,"CS101|Project|90","Error: Invalid total assignment weights can’t exceed 100"
+TC_ADD_ASSIGNMENT_05,Add assignment,TC_ADD_ASSIGNMENT_01.json,"CS999|Homework|10","Error: CourseID not found."
+TC_ADD_ASSIGNMENT_06,Add assignment,TC_ADD_ASSIGNMENT_01.json,"CS101||10","Error: Invalid arguments. Use: add_assignment <CourseID> <AssignmentName> [<Weight>]"

@@ -77,7 +77,8 @@ from = "default"
 dependencies = [
     "PyHamcrest==2.1.0",
     "pytest",
-    "pytest-cov"
+    "pytest-cov",
+
 ]
 
 [tool.coverage.run]

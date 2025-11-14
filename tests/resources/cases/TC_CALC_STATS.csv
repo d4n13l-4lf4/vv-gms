@@ -1,0 +1,5 @@
+TEST_CASE_ID,CMD,CONTEXT,INPUTS,EXPECTED_OUTPUTS
+TC_CALC_STATS_01,Calculate statistics,TC_CALC_STATS_01.json,"CS101|CaseStudy","Assignment: CaseStudy|Average: 85.2|Lowest: 70.4|Best: 100|SubmissionCount: 2"
+TC_CALC_STATS_02,Calculate statistics,TC_CALC_STATS_02.json,"CS101|CaseStudy","Error: No grades recorded for this assignment."
+TC_CALC_STATS_03,Calculate statistics,TC_CALC_STATS_01.json,"CS101|Unknown Task","Error: CourseID or AssignmentName not found."
+TC_CALC_STATS_04,Calculate statistics,TC_CALC_STATS_01.json,"|CaseStudy","Error: Invalid arguments. Use: calc_stats <CourseID> <AssignmentName>"
