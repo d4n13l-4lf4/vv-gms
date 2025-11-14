@@ -5,10 +5,13 @@ import pytest
 from click.testing import CliRunner
 from hamcrest import assert_that, has_entry, equal_to
 
-from tests.util import read_cases, find_command_option, get_context, prepare_input, get_input
+from tests.util import read_cases, find_command_option, get_context, prepare_input, get_input, write_lines
 from vv_gms.constant import CMD_EXIT
 from vv_gms.main import commands, shell
 
+
+def pytest_addoption(parser):
+    parser.addoption('--out_file', action='store', help='Output test case results')
 
 @pytest.fixture
 def get_filename() -> Callable[[str, str], str]:
@@ -20,7 +23,7 @@ def get_filename() -> Callable[[str, str], str]:
     return __inner__
 
 @pytest.fixture
-def runner(get_filename):
+def runner(get_filename, request):
     def __inner__(subtests, load_data, test_case_file: str):
         test_cases = read_cases(test_case_file)
         for idx, test_case in enumerate(test_cases):
@@ -36,8 +39,12 @@ def runner(get_filename):
                 runner = CliRunner()
                 result = runner.invoke(shell, input=prepared_input)
                 expected_outputs = Counter(test_case['EXPECTED_OUTPUTS'].split('|'))
-                out_lines = [line.strip() for line in result.output.splitlines()]
+                out_lines = [line.strip().strip(os.linesep) for line in result.output.splitlines()]
                 output_lines = Counter(out_lines)
+                out_file = request.config.getoption('out_file')
+                if out_file:
+                    out_filename = get_filename(test_case['TEST_CASE_ID'], 'report') + '.txt'
+                    write_lines(out_filename, out_lines, result.exception)
                 common = dict(expected_outputs & output_lines)
                 for expected_output in expected_outputs:
                     assert_that(common, has_entry(expected_output, equal_to(1)))

@@ -1,5 +1,7 @@
 import csv
 import json
+import os
+from pathlib import Path
 from typing import Dict, List
 
 
@@ -34,3 +36,12 @@ def read_cases(test_case_file: str) -> List[Dict[str, str]]:
 def get_context(context_file: str) -> Dict[str, str]:
     with open(context_file, mode='r', encoding='utf-8') as f:
         return json.load(f)
+
+def write_lines(file: str, out_lines: List[str], exception):
+    Path(file).parent.mkdir(parents=True, exist_ok=True)
+
+    with open(file, mode='w', encoding='utf-8') as f:
+        [f.write(line + os.linesep) for line in out_lines]
+        if exception:
+            f.write('====== EXCEPTION ======' + os.linesep)
+            f.write(f"{exception}")
