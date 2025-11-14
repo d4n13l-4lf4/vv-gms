@@ -4,6 +4,7 @@ from click import prompt, echo
 from pathlib import Path
 
 from vv_gms.dani.exception.custom import CustomException
+from vv_gms.dani.exception.decorator import catch_error
 from vv_gms.dani.models.report import Report
 from vv_gms.dani.repository.assignment import AssignmentRepo
 from vv_gms.dani.repository.course import CourseRepository
@@ -60,8 +61,9 @@ class ReportController:
     def __init__(self, report_service: ReportService):
         self.__report_service_ = report_service
 
+    @catch_error(echo)
     def generate_report(self):
-        course_id = prompt('Enter course id')
+        course_id = prompt('Enter course id', default="", show_default=False)
         report = self.__report_service_.generate_report(course_id)
 
         filename = Path.cwd() / 'report' / 'output.json'

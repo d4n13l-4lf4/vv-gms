@@ -27,7 +27,7 @@
     }
   },
   "course_teacher": {
-    "CS0001": "TEACH_001"
+    "CS101": "TEACH_001"
   },
   "teachers": {
     "TEACH_001": {
