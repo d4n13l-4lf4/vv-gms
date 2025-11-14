@@ -9,7 +9,7 @@ command_ids = [
 ]
 
 
-class TestShortened:
+class TestMain:
 
     @pytest.mark.parametrize("test_case_file", [
         'TC_ADD_COURSES.csv',

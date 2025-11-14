@@ -24,7 +24,7 @@ def prepare_input(input_data: List[str], resolver) -> List[str]:
 
 
 def get_input(data: List[str]) -> str:
-    return "\n".join(data) + "\n"
+    return os.linesep.join(data) + os.linesep
 
 
 def read_cases(test_case_file: str) -> List[Dict[str, str]]:
