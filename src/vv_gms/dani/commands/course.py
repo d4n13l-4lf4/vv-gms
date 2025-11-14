@@ -1,5 +1,5 @@
 import os
-from typing import Iterator, Any, Generator
+from typing import Iterator, Generator
 
 from click import prompt, echo
 

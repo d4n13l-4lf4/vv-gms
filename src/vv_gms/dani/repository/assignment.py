@@ -1,8 +1,6 @@
 import decimal
 from typing import Dict, List, Any
 
-from vv_gms.dani.models.assignment import Assignment
-
 
 class AssignmentRepo:
     def __init__(self, data: Dict[str, List[Dict[str, Any]]]) -> None:

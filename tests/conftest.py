@@ -57,7 +57,6 @@ def runner(get_filename, request):
                     write_lines(out_filename, out_lines, result.exception)
 
                 common = dict(expected_outputs & output_lines)
-                print(output_lines)
                 for expected_output in expected_outputs:
-                    assert_that(common, has_entry(expected_output, equal_to(1)))
+                    assert_that(common, has_entry(expected_output, equal_to(1)), "output was not found")
     return __inner__

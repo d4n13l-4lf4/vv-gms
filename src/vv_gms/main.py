@@ -1,13 +1,13 @@
+from typing import Dict
+
 import click
-
 from click import prompt, echo
-from typing import  Dict
 
+from vv_gms.celia import add_student
 from vv_gms.constant import CMD_ADD_COURSES, CMD_EXIT, CMD_GENERATE_REPORT, CMD_CALCULATE_STATISTICS, \
     CMD_ADD_ASSIGNMENT, CMD_REMOVE_COURSES, CMD_ADD_STUDENT
-from vv_gms.dani.bootstrap import bootstrap
-from vv_gms.celia import add_student
-from vv_gms.shared import load_data
+from vv_gms.dani.factory import CommandFactory
+from vv_gms.shared import data_file
 
 commands = {
     '1': CMD_ADD_COURSES,
@@ -27,8 +27,8 @@ def print_menu(cmds: Dict[str, str]):
 
 @click.command()
 def shell():
-    data = load_data()
-    facade = bootstrap(data)
+    print(f"DATA FILE LOCATED AT: {data_file}\n")
+    facade = CommandFactory()
     # add_courses
     # remove_courses
     # add_assignment
@@ -37,7 +37,6 @@ def shell():
     while True:
         print_menu(commands)
         value = prompt("Enter your choice")
-
         if value == "1":
             facade.add_courses()
         elif value == "2":

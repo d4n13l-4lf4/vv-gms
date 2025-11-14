@@ -161,7 +161,6 @@ def main():
 
         if value == "1":
             filename = input("Enter student file name: ").strip()
-            print(f"filename: {filename}")
             add_student(filename)
         elif value == "2":
             student_id = input("Enter the student ID: ").strip()

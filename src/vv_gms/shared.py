@@ -11,9 +11,17 @@ def load_data():
     if os.path.exists(data_file):
         with open(data_file, "r", encoding="utf-8") as f:
             return json.load(f)
-    return {}
+    return {
+        "courses": {},
+        "assignments": {},
+        "teachers": {},
+        "students": {},
+        "course_teacher": {},
+        "grades": {}
+    }
 
 
 def save_data(data):
+    Path(data_file).parent.mkdir(parents=True, exist_ok=True)
     with open(data_file, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=4)

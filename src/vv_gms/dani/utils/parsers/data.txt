@@ -1,3 +1,0 @@
-CourseID;CourseName
-CS0001;Computing
-CS0002;Mathematics
