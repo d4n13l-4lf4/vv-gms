@@ -1,4 +1,5 @@
 import csv
+import os
 from typing import Iterator, TypeVar
 
 from vv_gms.dani.utils.mappers.dict import DictMapper
@@ -14,6 +15,6 @@ class TXTParser(FileParser[T]):
         with open(filepath, mode='r', newline='', encoding='utf-8') as txtfile:
             next(txtfile) # skip first header line
             for line in txtfile:
-                fields = line.split(' ')
-                data = {idx: field.strip().strip('\n') for idx, field in enumerate(fields)}
+                fields = line.split(';')
+                data = {idx: field.strip().strip(os.linesep) for idx, field in enumerate(fields)}
                 yield self.__converter_.convert(data, 'txt')

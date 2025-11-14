@@ -1,3 +1,4 @@
+import os
 from typing import Iterator, Any, Generator
 
 from click import prompt, echo
@@ -50,10 +51,10 @@ class CourseController:
     def add_courses(self):
         filename = prompt('Enter filename')
         self.__course_service_.add_courses(filename)
-        echo('List of courses added to the system.\n')
+        echo('List of courses added to the system.' + os.linesep)
 
     @catch_error(echo)
     def remove_course(self):
         course_id = prompt('Enter course id')
         self.__course_service_.remove_course(course_id)
-        echo(f"Course {course_id} removed.\n")
+        echo(f"Course {course_id} removed." + os.linesep)
