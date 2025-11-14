@@ -1,6 +1,8 @@
 import csv
 import json
 import os
+import tempfile
+from contextlib import contextmanager
 from pathlib import Path
 from typing import Dict, List
 
@@ -45,3 +47,19 @@ def write_lines(file: str, out_lines: List[str], exception):
         if exception:
             f.write('====== EXCEPTION ======' + os.linesep)
             f.write(f"{exception}")
+
+
+@contextmanager
+def temporary_file(suffix='.json', prefix='tmp'):
+    """
+    Context manager for a temporary file.
+
+    :param suffix: Optional file suffix
+    :param prefix: Optional file prefix
+    """
+    temp_path = tempfile.mktemp(suffix=suffix, prefix=prefix)
+    try:
+        yield temp_path  # provide the temporary file to the caller
+    finally:
+        if os.path.exists(temp_path):
+            os.remove(temp_path)  # ensure the file is closed
