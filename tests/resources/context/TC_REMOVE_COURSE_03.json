@@ -19,25 +19,7 @@
       }
     ]
   },
-  "grades": {
-    "CS101": [
-      {
-        "student_id": "STD_ID_0001",
-        "assignment_name": "Test 01",
-        "grade": 100
-      },
-      {
-        "student_id": "STD_ID_0001",
-        "assignment_name": "Test 02",
-        "grade": 100
-      },
-      {
-        "student_id": "STD_ID_0002",
-        "assignment_name": "Test 02",
-        "grade": 100
-      }
-    ]
-  },
+  "grades": {},
   "students": {
   },
   "course_teacher": {

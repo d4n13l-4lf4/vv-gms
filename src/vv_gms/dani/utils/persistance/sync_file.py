@@ -8,8 +8,6 @@ def sync_file():
         @wraps(f)
         def wrapper(*args, **kwargs):
             data = load_data()
-            print("DATA IS")
-            print(data)
             result = f(*args, **kwargs, data=data)
             save_data(data)
             return result
