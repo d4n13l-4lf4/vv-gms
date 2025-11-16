@@ -18,8 +18,7 @@ def between(min_val: int | float, max_val: int | float, inclusive: bool, error_m
 
 def not_empty(err_msg: str):
     def __inner__(data: Any):
-        if not isinstance(data, str):
-            return
+        # safe check for data as str
         if data is None or len(data.strip()) == 0:
             raise CustomException(err_msg)
     return __inner__
