@@ -31,6 +31,8 @@ class CourseService:
 
     def __check_course_(self, courses: Iterator[Course]) -> Generator[dict[str, str], None, None]:
         for course in courses:
+            if not (course.course_id and course.course_name):
+                raise CustomException('Invalid input type file, or arguments. Use: <CourseID> <CourseName>')
             found = self.__course_repo_.get_course(course.course_id)
             if found is not None:
                 raise CustomException(f"{course.course_id} already exists.")
@@ -55,7 +57,7 @@ class CourseController:
 
     @catch_error(echo)
     def add_courses(self):
-        filename = prompt('Enter filename')
+        filename = prompt('Enter filename', default='', show_default=False)
         self.__course_service_.add_courses(filename)
         echo('List of courses added to the system.' + os.linesep)
 

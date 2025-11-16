@@ -1,6 +1,7 @@
 TEST_CASE_ID,CMD,CONTEXT,INPUTS,EXPECTED_OUTPUTS
 TC_ADD_COURSE_01,Add courses,TC_ADD_COURSES.json,file:TC_ADD_COURSE_01.csv,List of courses added to the system.
 TC_ADD_COURSE_02,Add courses,TC_ADD_COURSES.json,file:TC_ADD_COURSE_02.txt,List of courses added to the system.
-TC_ADD_COURSE_03,Add courses,TC_ADD_COURSES.json,file:TC_ADD_COURSE_03.csv,Error: CS0001 already exists.
-TC_ADD_COURSE_04,Add courses,TC_ADD_COURSES.json,file:,"Error: Invalid input type file, or arguments. Use: <CourseID> <CourseName>"
-TC_ADD_COURSE_05,Add courses,TC_ADD_COURSES.json,file:TC_ADD_COURSE_05.csv,"Error: Invalid input type file, or arguments. Use: <CourseID> <CourseName>"
+TC_ADD_COURSE_03,Add courses,TC_ADD_COURSES.json,file:TC_ADD_COURSE_03.csv,Error: CS101 already exists.
+TC_ADD_COURSE_04,Add courses,TC_ADD_COURSES.json,file:TC_ADD_COURSE_04.docx,"Error: Invalid input type file, or arguments. Use: <CourseID> <CourseName>"
+TC_ADD_COURSE_05,Add courses,TC_ADD_COURSES.json,,"Error: Invalid input type file, or arguments. Use: <CourseID> <CourseName>"
+TC_ADD_COURSE_06,Add courses,TC_ADD_COURSES.json,file:TC_ADD_COURSE_06.csv,"Error: Invalid input type file, or arguments. Use: <CourseID> <CourseName>"
