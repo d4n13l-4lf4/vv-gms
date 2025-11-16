@@ -5,7 +5,7 @@ from click import prompt, echo
 
 from vv_gms.celia import add_student
 from vv_gms.constant import CMD_ADD_COURSES, CMD_EXIT, CMD_GENERATE_REPORT, CMD_CALCULATE_STATISTICS, \
-    CMD_ADD_ASSIGNMENT, CMD_REMOVE_COURSES, CMD_ADD_STUDENT
+    CMD_ADD_ASSIGNMENT, CMD_REMOVE_COURSES, CMD_ADD_STUDENT, WELCOME_MESSAGE
 from vv_gms.dani.factory import CommandFactory
 from vv_gms.shared import data_file
 
@@ -20,7 +20,7 @@ commands = {
 }
 
 def print_menu(cmds: Dict[str, str]):
-    echo("Welcome to the grading management system")
+    echo(WELCOME_MESSAGE)
     for key, value in cmds.items():
         print(f"{key}. {value}")
 
@@ -29,11 +29,6 @@ def print_menu(cmds: Dict[str, str]):
 def shell():
     print(f"DATA FILE LOCATED AT: {data_file}\n")
     facade = CommandFactory()
-    # add_courses
-    # remove_courses
-    # add_assignment
-    # calc_stats
-    # generate_report
     while True:
         print_menu(commands)
         value = prompt("Enter your choice")

@@ -3,11 +3,15 @@ import json
 import os
 import tempfile
 from contextlib import contextmanager
+from functools import reduce
 from pathlib import Path
 from typing import Dict, List
 
+from vv_gms.constant import WELCOME_MESSAGE
+from vv_gms.main import commands
 
-def find_command_option(cmd: Dict[str, str], name: str) -> Dict[str, str]:
+
+def find_command_option(cmd: Dict[str, str], name: str) -> str:
     filtered = list(filter(lambda command: command[1] == name, cmd.items()))
     if len(filtered) > 0:
         return filtered[0][0]
@@ -64,3 +68,16 @@ def temporary_file(suffix='.json', prefix='tmp'):
     finally:
         if os.path.exists(temp_path):
             os.remove(temp_path)  # ensure the file is closed
+
+
+blacklist_words = [WELCOME_MESSAGE, 'Exit']
+starts_with_words = ['DATA FILE LOCATED AT', 'Enter ']
+
+def clean_prompts(lines: List[str], executed_cmds: List[str]) -> List[str]:
+    command_set = {f"{key}. {val}" for key, val in commands.items()}
+    [command_set.add(f"Enter your choice: {choice}") for choice in executed_cmds]
+    [command_set.add(f"{word}") for word in blacklist_words]
+    cleaned_lines = list(filter(lambda line: line, list(map(lambda line: line.strip(), lines))))
+    cleaned_lines = set(cleaned_lines) ^ set(command_set)
+    cleaned_lines = list(filter(lambda line: reduce(lambda acc, prefix: acc and (not line.startswith(prefix)), starts_with_words, True), cleaned_lines))
+    return cleaned_lines

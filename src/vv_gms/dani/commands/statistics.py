@@ -7,6 +7,8 @@ from vv_gms.dani.repository.assignment import AssignmentRepo
 from vv_gms.dani.repository.course import CourseRepository
 from vv_gms.dani.repository.grade import GradeRepository
 from vv_gms.dani.utils.stats.statistics import calculate_statistics
+from vv_gms.dani.validation.parameter import validate
+from vv_gms.dani.validation.validator import not_empty
 
 
 class StatisticsService:
@@ -15,6 +17,10 @@ class StatisticsService:
         self.__assignment_repo_ = assignment_repo
         self.__grade_repo_ = grade_repo
 
+    @validate({
+        'course_id': not_empty('Invalid arguments. Use: calc_stats <CourseID> <AssignmentName>'),
+        'assignment_name': not_empty('Invalid arguments. Use: calc_stats <CourseID> <AssignmentName>'),
+    })
     def calc_stats(self, course_id: str, assignment_name: str) -> Statistic:
         course = self.__course_repo_.get_course(course_id)
         if course is None:
@@ -25,7 +31,7 @@ class StatisticsService:
             raise CustomException('CourseID or AssignmentName not found.')
 
         grades = self.__grade_repo_.get_grades_by_course_id_assignment(course_id, assignment_name)
-        if grades is None:
+        if not grades:
             raise CustomException('No grades recorded for this assignment.')
 
         grades = list(map(lambda grade: grade['grade'], grades))
@@ -42,8 +48,8 @@ class StatisticsController:
 
     @catch_error(echo)
     def calc_stats(self):
-        course_id = prompt("Enter course id")
-        assignment_name = prompt("Enter assignment name")
+        course_id = prompt("Enter course id", default="", show_default=False)
+        assignment_name = prompt("Enter assignment name", default="", show_default=False)
         stats = self.__statistics_service_.calc_stats(course_id, assignment_name)
         echo(f"Assignment: {assignment_name}")
         echo(f"Average: {stats.average}")

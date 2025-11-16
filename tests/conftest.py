@@ -7,7 +7,7 @@ import pytest
 from click.testing import CliRunner
 from hamcrest import assert_that, has_entry, equal_to
 
-from tests.util import read_cases, find_command_option, prepare_input, get_input, write_lines, temporary_file
+from tests.util import clean_prompts, read_cases, find_command_option, prepare_input, get_input, write_lines, temporary_file
 from vv_gms.constant import CMD_EXIT
 from vv_gms.main import commands, shell
 from shutil import copy, rmtree
@@ -52,6 +52,7 @@ def runner(get_filename, request):
                 result = runner.invoke(shell, input=prepared_input)
                 expected_outputs = Counter(test_case['EXPECTED_OUTPUTS'].split('|'))
                 out_lines = [line.strip().strip(os.linesep) for line in result.output.splitlines()]
+                cleaned_lines = clean_prompts(out_lines, [cmd_option, exit_option])
                 output_lines = Counter(out_lines)
 
                 out_file = request.config.getoption('show_report')
@@ -61,5 +62,13 @@ def runner(get_filename, request):
 
                 common = dict(expected_outputs & output_lines)
                 for expected_output in expected_outputs:
-                    assert_that(common, has_entry(expected_output, equal_to(1)), "output was not found")
+                    try:
+                        assert_that(common, has_entry(expected_output, equal_to(1)), "output was not found")
+                    except AssertionError as e:
+                        print(f"==== TEST CASE ERROR ({test_case['TEST_CASE_ID']}) ====")
+                        print(os.linesep + "==== ACTUAL OUTPUTS ====")
+                        print(f"{cleaned_lines}" + os.linesep)
+                        print(os.linesep + "==== EXPECTED OUTPUTS ====")
+                        print(f"{test_case['EXPECTED_OUTPUTS'].split('|')}" + os.linesep)
+                        raise e
     return __inner__
