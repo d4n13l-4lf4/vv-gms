@@ -11,11 +11,11 @@ from vv_gms.constant import WELCOME_MESSAGE
 from vv_gms.main import commands
 
 
-def find_command_option(cmd: Dict[str, str], name: str) -> str:
+def find_command_option(cmd: Dict[str, str], name: str, default: str = '-1') -> str:
     filtered = list(filter(lambda command: command[1] == name, cmd.items()))
     if len(filtered) > 0:
         return filtered[0][0]
-    raise Exception(f"Command {name} not found")
+    return default
 
 
 def prepare_input(input_data: List[str], resolver) -> List[str]:

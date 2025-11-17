@@ -29,6 +29,3 @@ class Facade:
 
     def generate_report(self):
         return self.__report_controller_.generate_report()
-
-    def add_student(self):
-        pass
