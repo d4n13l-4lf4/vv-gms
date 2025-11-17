@@ -7,13 +7,16 @@ from vv_gms.constant import CMD_ADD_COURSES, CMD_EXIT, CMD_GENERATE_REPORT, CMD_
     CMD_ADD_ASSIGNMENT, CMD_REMOVE_COURSES
 from vv_gms.dani.bootstrap import bootstrap
 
+from src.vv_gms.constant import CMD_ADD_STUDENT
+
 commands = {
     '1': CMD_ADD_COURSES,
     '2': CMD_REMOVE_COURSES,
-    '3': CMD_ADD_ASSIGNMENT,
-    '4': CMD_CALCULATE_STATISTICS,
-    '5': CMD_GENERATE_REPORT,
-    '6': CMD_EXIT
+    '3': CMD_ADD_STUDENT,
+    '4': CMD_ADD_ASSIGNMENT,
+    '5': CMD_CALCULATE_STATISTICS,
+    '6': CMD_GENERATE_REPORT,
+    '7': CMD_EXIT
 }
 
 def load_data():
@@ -104,12 +107,14 @@ def shell():
         elif value == "2":
             facade.remove_course()
         elif value == "3": # Need to modify
-            facade.add_assignment()
+            facade.add_student()
         elif value == "4":
-            facade.calc_stats()
+            facade.add_assignment()
         elif value == "5":
-            facade.generate_report()
+            facade.calc_stats()
         elif value == "6":
+            facade.generate_report()
+        elif value == "7":
             echo("Exit")
             break
         else:
