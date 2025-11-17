@@ -1,13 +1,13 @@
 import os
 import json
-
+from vv_gms.shared import load_data, save_data
 
 def add_student(filename):
 
     if not os.path.exists(filename):
         print(f"File '{filename}' does not exist.")
         return
-
+    data = load_data()
     with open(filename, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
@@ -163,44 +163,3 @@ def edit_grade(course_id, student_id, assignmentName, new_grade):
 
     print(f"Updated grade for student {student_id} in {course_id} - {assignmentName} to {numeric_grade}.")
     save_data(data)
-
-
-def main():
-    while True:
-        print("Welcome to the grading management system")
-        print("These are the options you can choose")
-        print("1. Add a student")
-        print("2. Remove a student from a course (remove grades)")
-        print("3. Add grade")
-        print("4. Edit grade")
-        print("5. Exit")
-        value = input("Enter your choice: ")
-
-        if value == "1":
-            filename = input("Enter student file name: ").strip()
-            add_student(filename)
-        elif value == "2":
-            student_id = input("Enter the student ID: ").strip()
-            course_id = input("Enter the course ID: ").strip()
-            remove_student(student_id, course_id)
-        elif value == "3":
-            course_id = input("Enter the course ID: ").strip()
-            student_id = input("Enter the student ID: ").strip()
-            assignmentName = input("Enter the assignment name: ").strip()
-            grade = input("Enter the grade: ").strip()
-            add_grade(course_id, student_id, assignmentName, grade)
-        elif value == "4":
-            course_id = input("Enter the course ID: ").strip()
-            student_id = input("Enter the student ID: ").strip()
-            assignmentName = input("Enter the assignment name: ").strip()
-            new_grade = input("Enter the new grade: ").strip()
-            edit_grade(course_id, student_id, assignmentName, new_grade)
-        elif value == "5":
-            print("Exiting grade management system. Bye!")
-            break
-        else:
-            print("Invalid option. Please choose 1, 2, 3, 4 or 5.")
-
-
-if __name__ == '__main__':
-    main()
