@@ -6,7 +6,8 @@ command_ids = [
     'TC_REMOVE_COURSE',
     'TC_ADD_ASSIGNMENT',
     'TC_CALC_STATS',
-    'TC_REPORT'
+    'TC_REPORT',
+    'TC_ADD_STUDENT'
 ]
 
 
@@ -18,7 +19,7 @@ class TestMain:
         'TC_ADD_ASSIGNMENT.csv',
         'TC_CALC_STATS.csv',
         'TC_REPORT.csv',
-        #'TC_ADD_STUDENT.csv',
+        'TC_ADD_STUDENT.csv',
 
     ], ids=command_ids)
     def test_commands(self, runner, subtests, test_case_file, get_filename):
