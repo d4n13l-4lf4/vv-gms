@@ -1,13 +1,17 @@
 import os
-import json
-from celia.shared import save_data, load_data
+from vv_gms.shared import save_data, load_data
 
 def add_student(filename):
 
     if not os.path.exists(filename):
         print(f"File '{filename}' does not exist.")
         return
+
+    # 2. Cargar estructura existente
     data = load_data()
+    if "students" not in data:
+        data["students"] = {}
+
     with open(filename, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
@@ -16,7 +20,6 @@ def add_student(filename):
         return
 
     header_line = lines[0].strip()
-    # Detección de delimitador (tu lógica original)
     if filename.endswith(".csv"):
         delimiter = ","
     else:
@@ -29,6 +32,14 @@ def add_student(filename):
         else:
             delimiter = ";"
 
+    expected_columns = ["StudentID", "StudentName", "CourseID"]
+    header_cols = [c.strip() for c in header_line.split(delimiter)]
+
+    if header_cols != expected_columns:
+        print("Error: invalid student file format.")
+        return
+
+
     for line in lines[1:]:
         if not line.strip():
             continue
@@ -40,9 +51,10 @@ def add_student(filename):
         else:
             row = [col.strip() for col in line.split(delimiter)]
 
-
-        if len(row) < 2:
-            continue
+        # El número debe ser EXACTAMENTE 3 columnas
+        if len(row) != 3:
+            print("Error: invalid line format in student file.")
+            return
 
         student_id = row[0]
         student_name = row[1]
@@ -50,19 +62,25 @@ def add_student(filename):
         if not student_id:
             continue
 
+
         if student_id not in data["students"]:
             data["students"][student_id] = {
                 "student_id": student_id,
                 "student_name": student_name
             }
             print(f"Added student {student_name} ({student_id}).")
+
+
+
         else:
-            # Si ya existe, opcionalmente actualizamos el nombre si es distinto
             if data["students"][student_id].get("student_name") != student_name:
                 data["students"][student_id]["student_name"] = student_name
                 print(f"Updated student name for {student_id} to {student_name}.")
+                any_changed = True
+
 
     save_data(data)
+    print("List of students added to the system.")
 
 
 def remove_student(student_id, course_id):

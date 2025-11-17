@@ -6,8 +6,7 @@ from typing import  Dict
 from vv_gms.constant import CMD_ADD_COURSES, CMD_EXIT, CMD_GENERATE_REPORT, CMD_CALCULATE_STATISTICS, \
     CMD_ADD_ASSIGNMENT, CMD_REMOVE_COURSES, CMD_REMOVE_STUDENT, CMD_ADD_GRADE, CMD_EDIT_GRADE
 from vv_gms.dani.bootstrap import bootstrap
-from celia.functions_celia import add_student, remove_student, add_grade, edit_grade
-
+from vv_gms.functions_celia import add_student, remove_student, add_grade, edit_grade
 
 from src.vv_gms.constant import CMD_ADD_STUDENT
 
@@ -130,7 +129,7 @@ def shell():
             student_id = prompt("Enter student ID: ")
             assignment_name = prompt("Enter assignment name: ")
             new_grade = prompt("Enter new grade: ")
-            add_grade(course_id,student_id,assignment_name,new_grade)
+            edit_grade(course_id,student_id,assignment_name,new_grade)
         elif value == "8":
             facade.calc_stats()
         elif value == "9":
