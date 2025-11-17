@@ -1,6 +1,6 @@
 import os
 import json
-from vv_gms.shared import load_data, save_data
+from celia.shared import save_data, load_data
 
 def add_student(filename):
 

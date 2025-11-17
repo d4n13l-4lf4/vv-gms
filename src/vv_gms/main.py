@@ -4,9 +4,10 @@ from click import prompt, echo
 from typing import  Dict
 
 from vv_gms.constant import CMD_ADD_COURSES, CMD_EXIT, CMD_GENERATE_REPORT, CMD_CALCULATE_STATISTICS, \
-    CMD_ADD_ASSIGNMENT, CMD_REMOVE_COURSES
+    CMD_ADD_ASSIGNMENT, CMD_REMOVE_COURSES, CMD_REMOVE_STUDENT, CMD_ADD_GRADE, CMD_EDIT_GRADE
 from vv_gms.dani.bootstrap import bootstrap
-from celia.functions_celia import add_student
+from celia.functions_celia import add_student, remove_student, add_grade, edit_grade
+
 
 from src.vv_gms.constant import CMD_ADD_STUDENT
 
@@ -14,10 +15,13 @@ commands = {
     '1': CMD_ADD_COURSES,
     '2': CMD_REMOVE_COURSES,
     '3': CMD_ADD_STUDENT,
-    '4': CMD_ADD_ASSIGNMENT,
-    '5': CMD_CALCULATE_STATISTICS,
-    '6': CMD_GENERATE_REPORT,
-    '7': CMD_EXIT
+    '4': CMD_REMOVE_STUDENT,
+    '5': CMD_ADD_ASSIGNMENT,
+    '6': CMD_ADD_GRADE,
+    '7': CMD_EDIT_GRADE,
+    '8': CMD_CALCULATE_STATISTICS,
+    '9': CMD_GENERATE_REPORT,
+    '10': CMD_EXIT
 }
 
 def load_data():
@@ -111,12 +115,27 @@ def shell():
             filename = prompt("Enter student file name: ")
             add_student(filename)
         elif value == "4":
-            facade.add_assignment()
+            student_id = prompt("Enter student ID: ")
+            course_id = prompt("Enter course ID: ")
+            remove_student(student_id, course_id)
         elif value == "5":
-            facade.calc_stats()
+            facade.add_assignment()
         elif value == "6":
-            facade.generate_report()
+            course_id = prompt("Enter course ID: ")
+            assigment_name = prompt("Enter assigment name: ")
+            grade = prompt("Enter grade: ")
+            add_grade(course_id, assigment_name, grade)
         elif value == "7":
+            course_id = prompt("Enter course ID: ")
+            student_id = prompt("Enter student ID: ")
+            assignment_name = prompt("Enter assignment name: ")
+            new_grade = prompt("Enter new grade: ")
+            add_grade(course_id,student_id,assignment_name,new_grade)
+        elif value == "8":
+            facade.calc_stats()
+        elif value == "9":
+            facade.generate_report()
+        elif value == "10":
             echo("Exit")
             break
         else:
