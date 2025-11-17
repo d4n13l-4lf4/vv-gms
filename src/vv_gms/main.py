@@ -6,6 +6,7 @@ from typing import  Dict
 from vv_gms.constant import CMD_ADD_COURSES, CMD_EXIT, CMD_GENERATE_REPORT, CMD_CALCULATE_STATISTICS, \
     CMD_ADD_ASSIGNMENT, CMD_REMOVE_COURSES
 from vv_gms.dani.bootstrap import bootstrap
+from celia.functions_celia import add_student
 
 from src.vv_gms.constant import CMD_ADD_STUDENT
 
@@ -107,7 +108,8 @@ def shell():
         elif value == "2":
             facade.remove_course()
         elif value == "3": # Need to modify
-            facade.add_student()
+            filename = prompt("Enter student file name: ")
+            add_student(filename)
         elif value == "4":
             facade.add_assignment()
         elif value == "5":
