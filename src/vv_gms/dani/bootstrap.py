@@ -23,13 +23,14 @@ def bootstrap(data) -> Facade:
     facade_parser = FacadeParser(txt_parser, csv_parser)
     course_repo = CourseRepository(data['courses'])
     assignment_repo = AssignmentRepo(data['assignments'])
-    course_service = CourseService(facade_parser, course_repo, assignment_repo)
+    grade_repo = GradeRepository(data['grades'])
+
+    course_service = CourseService(facade_parser, course_repo, assignment_repo, grade_repo)
     course_controller = CourseController(course_service)
 
     assignment_service = AssignmentService(assignment_repo, course_repo)
     assignment_controller = AssignmentController(assignment_service)
 
-    grade_repo = GradeRepository(data['grades'])
     statistics_service = StatisticsService(course_repo, assignment_repo, grade_repo)
     statistics_controller = StatisticsController(statistics_service)
 

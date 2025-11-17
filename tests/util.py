@@ -1,11 +1,17 @@
 import csv
 import json
 import os
+import tempfile
+from contextlib import contextmanager
+from functools import reduce
 from pathlib import Path
 from typing import Dict, List
 
+from vv_gms.constant import WELCOME_MESSAGE
+from vv_gms.main import commands
 
-def find_command_option(cmd: Dict[str, str], name: str) -> Dict[str, str]:
+
+def find_command_option(cmd: Dict[str, str], name: str) -> str:
     filtered = list(filter(lambda command: command[1] == name, cmd.items()))
     if len(filtered) > 0:
         return filtered[0][0]
@@ -24,7 +30,7 @@ def prepare_input(input_data: List[str], resolver) -> List[str]:
 
 
 def get_input(data: List[str]) -> str:
-    return "\n".join(data) + "\n"
+    return os.linesep.join(data) + os.linesep
 
 
 def read_cases(test_case_file: str) -> List[Dict[str, str]]:
@@ -38,10 +44,40 @@ def get_context(context_file: str) -> Dict[str, str]:
         return json.load(f)
 
 def write_lines(file: str, out_lines: List[str], exception):
-    Path(file).parent.mkdir(parents=True, exist_ok=True)
+    filepath = Path(file)
+    filepath.parent.mkdir(parents=True, exist_ok=True)
 
     with open(file, mode='w', encoding='utf-8') as f:
         [f.write(line + os.linesep) for line in out_lines]
         if exception:
             f.write('====== EXCEPTION ======' + os.linesep)
             f.write(f"{exception}")
+
+
+@contextmanager
+def temporary_file(suffix='.json', prefix='tmp'):
+    """
+    Context manager for a temporary file.
+
+    :param suffix: Optional file suffix
+    :param prefix: Optional file prefix
+    """
+    temp_path = tempfile.mktemp(suffix=suffix, prefix=prefix)
+    try:
+        yield temp_path  # provide the temporary file to the caller
+    finally:
+        if os.path.exists(temp_path):
+            os.remove(temp_path)  # ensure the file is closed
+
+
+blacklist_words = [WELCOME_MESSAGE, 'Exit']
+starts_with_words = ['DATA FILE LOCATED AT', 'Enter ']
+
+def clean_prompts(lines: List[str], executed_cmds: List[str]) -> List[str]:
+    command_set = {f"{key}. {val}" for key, val in commands.items()}
+    [command_set.add(f"Enter your choice: {choice}") for choice in executed_cmds]
+    [command_set.add(f"{word}") for word in blacklist_words]
+    cleaned_lines = list(filter(lambda line: line, list(map(lambda line: line.strip(), lines))))
+    cleaned_lines = set(cleaned_lines) ^ set(command_set)
+    cleaned_lines = list(filter(lambda line: reduce(lambda acc, prefix: acc and (not line.startswith(prefix)), starts_with_words, True), cleaned_lines))
+    return cleaned_lines

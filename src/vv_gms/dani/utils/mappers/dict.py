@@ -1,5 +1,6 @@
 from dataclasses import fields
-from typing import TypeVar, Type, Generic, Dict
+from typing import TypeVar, Type, Generic
+
 from dacite import from_dict, Config
 
 T = TypeVar("T")

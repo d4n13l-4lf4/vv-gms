@@ -1,6 +1,5 @@
 from typing import Dict, Any
 
-from vv_gms.dani.models.teacher import Teacher
 from vv_gms.dani.repository.teacher import TeacherRepository
 
 

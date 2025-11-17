@@ -27,7 +27,8 @@ classifiers = [
 dependencies = [
     "click==8.3.0",
     "dacite==1.9.2",
-    "pydash==8.0.5"
+    "pydash==8.0.5",
+    "platformdirs==4.5.0"
 ]
 
 [project.scripts]
@@ -76,7 +77,8 @@ from = "default"
 dependencies = [
     "PyHamcrest==2.1.0",
     "pytest",
-    "pytest-cov"
+    "pytest-cov",
+
 ]
 
 [tool.coverage.run]
@@ -93,6 +95,7 @@ vv_gms = ["src/vv_gms", "*/vv-gms/src/vv_gms"]
 tests = ["tests", "*/vv-gms/tests"]
 
 [tool.coverage.report]
+show_missing = true
 exclude_lines = [
   "no cov",
   "if __name__ == .__main__.:",

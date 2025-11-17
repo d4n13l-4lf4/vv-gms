@@ -17,7 +17,7 @@ class AssignmentService:
         self.__course_repo_ = course_repo
 
     @validate({
-        'weight': between(0, 100, True, 'Invalid weight value. Must be integer 0-100'),
+        'weight': between(0, 100, True, 'Invalid weight value. Must be integer 0-100.'),
         'course_id': not_empty('Invalid arguments. Use: add_assignment <CourseID> <AssignmentName> [<Weight>]'),
         'assignment_name': not_empty('Invalid arguments. Use: add_assignment <CourseID> <AssignmentName> [<Weight>]'),
     })
@@ -28,7 +28,7 @@ class AssignmentService:
             raise CustomException('CourseID not found.')
         assignment = self.__assignment_repo_.get_assignment_by_course_id_and_name(course_id, assignment_name)
         if assignment is not None:
-            raise CustomException('Assignment already exist in this course.')
+            raise CustomException('Assignment already exists in this course.')
 
         assignments = self.__assignment_repo_.get_assignments_by_course_id(course_id)
         current_weight = reduce(lambda acc, asg: asg['weight'] + acc, assignments, 0)
@@ -44,7 +44,7 @@ class AssignmentController:
     @catch_error(echo)
     def add_assignment(self):
         course_id = prompt('Enter course ID')
-        assignment_name = prompt('Enter assignment name')
+        assignment_name = prompt('Enter assignment name', default='', show_default=False)
         weight = prompt('Enter weight value')
         self.__assignment_service_.add_assignment(course_id, assignment_name, weight)
         echo(f"Assignment {assignment_name} added to course {course_id} with weight {weight}")

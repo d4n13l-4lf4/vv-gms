@@ -6,4 +6,4 @@ T = TypeVar("T")
 class FileParser (ABC, Generic[T]):
     @abstractmethod
     def parse(self, filepath: str) -> Iterator[T]:
-        pass
+        pass # pragma: no cover
