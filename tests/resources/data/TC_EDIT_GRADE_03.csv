@@ -1,0 +1,2 @@
+TestCaseID,Goal,Input,ExpectedOutput
+TC_EDIT_GRADE_03,Error when new grade is not numeric,course_id=CS101; student_id=123; assignmentName=HW1; new_grade=abc,New grade must be a number.

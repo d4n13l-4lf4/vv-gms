@@ -1,0 +1,6 @@
+TEST_CASE_ID,CMD,CONTEXT,INPUTS,EXPECTED_OUTPUTS
+TC_EDIT_GRADE_01,Edit grade,TC_EDIT_GRADE.json,file:TC_EDIT_GRADE_01.csv,Updated grade for student 123 in CS101 - HW1 to 9.0.
+TC_EDIT_GRADE_02,Edit grade,TC_EDIT_GRADE.json,file:TC_EDIT_GRADE_02.csv,No grades found for course CS999.
+TC_EDIT_GRADE_03,Edit grade,TC_EDIT_GRADE.json,file:TC_EDIT_GRADE_03.csv,New grade must be a number.
+TC_EDIT_GRADE_04,Edit grade,TC_EDIT_GRADE.json,file:TC_EDIT_GRADE_04.csv,No grade found for student 999 in course CS101 for assignment 'HW1'.
+TC_EDIT_GRADE_05,Edit grade,TC_EDIT_GRADE.json,file:TC_EDIT_GRADE_05.csv,No grade found for student 123 in course CS101 for assignment 'HW2'.

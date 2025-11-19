@@ -1,0 +1,2 @@
+TestCaseID,Goal,Input,ExpectedOutput
+TC_EDIT_GRADE_02,Error when course has no grades,course_id=CS999; student_id=123; assignmentName=HW1; new_grade=8,No grades found for course CS999.

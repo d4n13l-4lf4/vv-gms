@@ -1,0 +1,2 @@
+TestCaseID,Goal,Input,ExpectedOutput
+TC_EDIT_GRADE_01,Edit existing grade correctly,course_id=CS101; student_id=123; assignmentName=HW1; new_grade=9.0,Updated grade for student 123 in CS101 - HW1 to 9.0.
