@@ -20,7 +20,6 @@ class TestMain:
         'TC_CALC_STATS.csv',
         'TC_REPORT.csv',
         'TC_MAIN_COMMAND.csv'
-
     ], ids=command_ids)
     def test_commands(self, runner, subtests, test_case_file, get_filename):
         test_case = get_filename(test_case_file, 'cases')
