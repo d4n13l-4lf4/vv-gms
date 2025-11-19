@@ -1,0 +1,7 @@
+TEST_CASE_ID,CMD,CONTEXT,INPUTS,EXPECTED_OUTPUTS
+TC_REMOVE_STUDENT_01,Remove student,TC_REMOVE_STUDENT.json,file:TC_REMOVE_STUDENT_01.csv,"Student 12345 does not exist."
+TC_REMOVE_STUDENT_02,Remove student,TC_REMOVE_STUDENT.json,file:TC_REMOVE_STUDENT_02.csv,"Course CS310 has no grades registered."
+TC_REMOVE_STUDENT_03,Remove student,TC_REMOVE_STUDENT.json,file:TC_REMOVE_STUDENT_03.csv,"Removed 1 grade(s) for student 10001 in course CS101.|List of students added to the system."
+TC_REMOVE_STUDENT_04,Remove student,TC_REMOVE_STUDENT.json,file:TC_REMOVE_STUDENT_04.csv,"No grades found for student 10002 in course CS101.|List of students added to the system."
+TC_REMOVE_STUDENT_05,Remove student,TC_REMOVE_STUDENT.json,file:TC_REMOVE_STUDENT_05.csv,"Removed 3 grade(s) for student 20001 in course CS202.|List of students added to the system."
+TC_REMOVE_STUDENT_06,Remove student,TC_REMOVE_STUDENT.json,file:TC_REMOVE_STUDENT_06.csv,"No grades found for student 30001 in course CS500.|List of students added to the system."

@@ -6,6 +6,7 @@ import pytest
 command_ids = [
     'TC_ADD_COURSE',
     'TC_REPORT'
+    'TC_REMOVE_COURSE',
 ]
 
 
@@ -13,7 +14,8 @@ class TestShortened:
 
     @pytest.mark.parametrize("test_case_file", [
         'TC_ADD_COURSES.csv',
-        'TC_REPORT.csv'
+        'TC_REPORT.csv',
+        'TC_REMOVE_COURSES.csv',
     ], ids=command_ids)
     @patch('vv_gms.main.load_data')
     def test_commands(self, load_data, runner, subtests, test_case_file, get_filename):
