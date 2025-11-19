@@ -1,0 +1,4 @@
+TEST_CASE_ID,CMD,CONTEXT,INPUTS,EXPECTED_OUTPUTS
+TC_REMOVE_COURSE_01,Remove course,TC_REMOVE_COURSE_01.json,CS101,Course CS101 removed.
+TC_REMOVE_COURSE_02,Remove course,,CS999,Error: CourseID not found.
+TC_REMOVE_COURSE_03,Remove course,TC_REMOVE_COURSE_03.json,CS101,Error: Cannot delete course with active assignments or grades.

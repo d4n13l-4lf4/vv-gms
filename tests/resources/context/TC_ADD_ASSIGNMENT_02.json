@@ -1,0 +1,25 @@
+{
+  "courses": {
+    "CS101": {
+      "course_id": "CS101",
+      "course_name": "Computing"
+    }
+  },
+  "assignments": {
+    "CS101": [
+      {
+        "course_id": "CS101",
+        "assignment_name": "CaseStudy",
+        "weight": 20
+      }
+    ]
+  },
+  "grades": {
+  },
+  "students": {
+  },
+  "course_teacher": {
+  },
+  "teachers": {
+  }
+}

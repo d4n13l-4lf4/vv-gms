@@ -10,8 +10,8 @@ def validate(validators: dict[str, Callable[[Any], None]]):
             bound = signature(f).bind(*args, **kwargs)
             bound.apply_defaults()
             for param, validator in validators.items():
-                if param in bound.arguments:
-                    validator(bound.arguments[param])
+                # safe check for param in bound.arguments condition
+                validator(bound.arguments[param])
             return f(*args, **kwargs)
         return wrapper
     return decorator

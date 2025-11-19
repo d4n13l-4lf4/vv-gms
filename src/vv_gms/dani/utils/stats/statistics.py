@@ -1,13 +1,10 @@
 from decimal import Decimal
 from functools import reduce
-from typing import List, Iterator, Dict, Any
+from typing import List, Dict, Any
 
-from pydash.objects import set_, get
+from pydash.objects import set_
 
-from vv_gms.dani.models.assignment import Assignment
-from vv_gms.dani.models.grade import Grade
 from vv_gms.dani.models.statistic import Statistic
-from vv_gms.dani.models.student import Student
 from vv_gms.dani.models.student_grade import StudentGrade
 
 
