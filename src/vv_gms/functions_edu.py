@@ -1,4 +1,6 @@
 import os
+
+from vv_gms.dani.utils.stats.statistics import calculate_student_grade
 from vv_gms.shared import load_data, save_data
 import statistics
 
@@ -64,6 +66,7 @@ def add_teacher(filename):
         data["teachers"][teacher_id] = {"name": teacher_name}
         print(f"Added teacher {teacher_name} ({teacher_id}).")
 
+    # Output del PDF
     print("List of teachers added to the system.")
     save_data(data)
 
@@ -82,19 +85,23 @@ def assign_teacher(course_id, teacher_id):
         print("Error: TeacherID not found.")
         return
 
-    course = data["courses"][course_id]
+    # Asegurar que course_teacher existe
+    if "course_teacher" not in data:
+        data["course_teacher"] = {}
 
-    if "teachers" not in course:
-        course["teachers"] = []
+    # Asegurar que el curso tenga lista de profesores asignados
+    if course_id not in data["course_teacher"]:
+        data["course_teacher"][course_id] = []
 
     # Error Case del PDF:
-    if teacher_id in course["teachers"]:
+    if teacher_id in data["course_teacher"][course_id]:
         print("Error: Teacher already assigned.")
         return
 
-    course["teachers"].append(teacher_id)
 
-    # Output del PDF
+    data["course_teacher"][course_id].append(teacher_id)
+
+    # Output del PDF:
     print(f"Teacher {data['teachers'][teacher_id]['name']} assigned to {course_id}.")
 
     save_data(data)
@@ -109,23 +116,22 @@ def remove_teacher(course_id, teacher_id):
         print("Error: CourseID not found.")
         return
 
-    course = data["courses"][course_id]
-
     # Error Case del PDF:
-    if "teachers" not in course or teacher_id not in course["teachers"]:
+    if course_id not in data["course_teacher"]:
         print("Error: Teacher not assigned to this course.")
         return
 
-    course["teachers"].remove(teacher_id)
+    del data["course_teacher"][course_id]
 
-    # Output del PDF:
+    # Output del PDF
     print(f"Teacher {data['teachers'][teacher_id]['name']} removed from {course_id}.")
+
     save_data(data)
 
-
-def calc_course_stats(course_id):
+# CALCULATE COURSE STATS
+def calc_course_stats(course_id: str):
     # Error Case del PDF:
-    if not course_id:
+    if not course_id or not course_id.strip('" ').strip():
         print("Error: Invalid arguments. Use: calc_course_stats <CourseID>")
         return
 
@@ -136,28 +142,22 @@ def calc_course_stats(course_id):
         print("Error: CourseID not found.")
         return
 
-    course = data["courses"][course_id]
-
-    if "students" not in course or not course["students"]:
-        print("Error: No students in this course.")
-        return
-
-
-    final_grades = []
-
-    for student_id, info in course["students"].items():
-        if "grades" not in info or not info["grades"]:
-            continue
-
-        grades = list(info["grades"].values())
-        avg = sum(grades) / len(grades)
-        final_grades.append(avg)
+    students = [s for s_id, s in data["students"].items()]
+    assignments = data.get("assignments", {}).get(course_id, [])
+    grades = data.get("grades", {}).get(course_id, [])
 
     # Error Case del PDF:
-    if not final_grades:
+    if not assignments:
         print("Error: No assignments defined for this course.")
-        # print("Error: No grades recorded for this course.") # DUDA -> los dos errores se tratan de la misma manera
         return
+
+    # Error Case del PDF:
+    if not grades:
+        print("Error: No grades recorded for this course.")
+        return
+
+    final_grades_objs = calculate_student_grade(students, assignments, grades)
+    final_grades = [s.grade for s in final_grades_objs if s.grade is not None]
 
     course_average = sum(final_grades) / len(final_grades)
     median = statistics.median(final_grades)
