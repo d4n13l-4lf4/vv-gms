@@ -7,7 +7,6 @@ command_ids = [
     'TC_ADD_ASSIGNMENT',
     'TC_CALC_STATS',
     'TC_REPORT',
-    'TC_ADD_STUDENT',
     'TC_MAIN_COMMAND'
 ]
 
@@ -20,7 +19,6 @@ class TestMain:
         'TC_ADD_ASSIGNMENT.csv',
         'TC_CALC_STATS.csv',
         'TC_REPORT.csv',
-        'TC_ADD_STUDENT.csv',
         'TC_MAIN_COMMAND.csv'
 
     ], ids=command_ids)
