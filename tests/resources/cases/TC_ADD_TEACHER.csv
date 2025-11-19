@@ -1,0 +1,8 @@
+TEST_CASE_ID,CMD,CONTEXT,INPUTS,EXPECTED_OUTPUTS
+TC_ADD_TEACHER_01,Add teacher,TC_ADD_TEACHER_WITHOUT_TEACHERS.json,file:TC_ADD_TEACHER.csv,List of teachers added to the system.
+TC_ADD_TEACHER_02,Add teacher,TC_ADD_TEACHER.json,file:TC_NOT_REAL_FILE.csv,Error: Invalid file.
+TC_ADD_TEACHER_03,Add teacher,TC_ADD_TEACHER.json,file:TC_ADD_TEACHER_EMPTY.csv,Error: Empty file.
+TC_ADD_TEACHER_04,Add teacher,TC_ADD_TEACHER.json,file:TC_ADD_TEACHER_WRONG_INPUT.txt,"Error: Invalid input type file, or arguments. Use: <TeacherID> <TeacherName>"
+TC_ADD_TEACHER_05,Add teacher,TC_ADD_TEACHER.json,file:TC_ADD_TEACHER_WRONG_DELIMITER.csv,Error: Invalid file format. Delimiter not supported.
+TC_ADD_TEACHER_06,Add teacher,TC_ADD_TEACHER_WITH_TEACHERS.json,file:TC_ADD_TEACHER.csv,Error: TC01 already exists.
+TC_ADD_TEACHER_07,Add teacher,TC_ADD_TEACHER_WITH_TEACHERS.json,file:TC_ADD_TEACHER_WRONG_INPUT.csv,"Error: Invalid input type file, or arguments. Use: <TeacherID> <TeacherName>"

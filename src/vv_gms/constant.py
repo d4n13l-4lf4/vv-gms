@@ -10,3 +10,7 @@ CMD_CALCULATE_STATISTICS = "Calculate statistics"
 CMD_GENERATE_REPORT = "Generate report"
 CMD_EXIT = "Exit"
 WELCOME_MESSAGE = "Welcome to the grading management system"
+
+CMD_ADD_TEACHER = "Add teacher"
+CMD_ASSIGN_TEACHER = "Assign teacher"
+CMD_REMOVE_TEACHER = "Remove teacher"
