@@ -1,2 +1,2 @@
 StudentID;StudentName;CourseID
-12345;John Doe;CS101
+Lucía Ortega;55667;CS310

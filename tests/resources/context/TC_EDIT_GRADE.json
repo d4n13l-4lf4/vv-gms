@@ -1,0 +1,37 @@
+{
+  "courses": {
+    "CS101": {
+      "course_id": "CS101",
+      "course_name": "Introduction to Computer Science"
+    }
+  },
+  "assignments": {
+    "CS101": [
+      {
+        "assignment_name": "HW1",
+        "max_grade": 10
+      }
+    ]
+  },
+  "grades": {
+    "CS101": [
+      {
+        "student_id": "123",
+        "assignment_name": "HW1",
+        "grade": 7.5
+      }
+    ]
+  },
+  "students": {
+    "123": {
+      "student_id": "123",
+      "student_name": "Alice Smith"
+    },
+    "999": {
+      "student_id": "999",
+      "student_name": "Bob Brown"
+    }
+  },
+  "course_teacher": {},
+  "teachers": {}
+}

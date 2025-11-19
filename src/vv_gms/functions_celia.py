@@ -32,13 +32,6 @@ def add_student(filename):
         else:
             delimiter = ";"
 
-    expected_columns = ["StudentID", "StudentName", "CourseID"]
-    header_cols = [c.strip() for c in header_line.split(delimiter)]
-
-    if header_cols != expected_columns:
-        print("Error: invalid student file format.")
-        return
-
 
     for line in lines[1:]:
         if not line.strip():
@@ -51,9 +44,9 @@ def add_student(filename):
         else:
             row = [col.strip() for col in line.split(delimiter)]
 
-        # El número debe ser EXACTAMENTE 3 columnas
+
         if len(row) != 3:
-            print("Error: invalid line format in student file.")
+            print("Error: invalid student file format.")
             return
 
         student_id = row[0]
@@ -69,19 +62,14 @@ def add_student(filename):
                 "student_name": student_name
             }
             print(f"Added student {student_name} ({student_id}).")
-
-
-
         else:
             if data["students"][student_id].get("student_name") != student_name:
                 data["students"][student_id]["student_name"] = student_name
                 print(f"Updated student name for {student_id} to {student_name}.")
-                any_changed = True
 
 
     save_data(data)
     print("List of students added to the system.")
-
 
 def remove_student(student_id, course_id):
 
@@ -108,7 +96,7 @@ def remove_student(student_id, course_id):
         print(f"No grades found for student {student_id} in course {course_id}.")
 
     save_data(data)
-
+    print("List of students added to the system.")
 
 def add_grade(course_id, student_id, assignmentName, grade):
 
@@ -151,9 +139,7 @@ def add_grade(course_id, student_id, assignmentName, grade):
 
 
 def edit_grade(course_id, student_id, assignmentName, new_grade):
-    """
-    Edita una nota existente en la estructura de 'grades'.
-    """
+
     data = load_data()
 
     if course_id not in data.get("grades", {}):

@@ -1,3 +1,5 @@
 TEST_CASE_ID,CMD,CONTEXT,INPUTS,EXPECTED_OUTPUTS
 TC_ADD_STUDENT_01,Add student,TC_ADD_STUDENT.json,file:TC_ADD_STUDENT_01.csv,List of students added to the system.
 TC_ADD_STUDENT_02,Add student,TC_ADD_STUDENT.json,file:TC_ADD_STUDENT_02.txt,List of students added to the system.
+TC_ADD_STUDENT_03,Add student,TC_ADD_STUDENT.json,file:TC_ADD_STUDENT_03.csv,Error: invalid student file format.
+TC_ADD_STUDENT_04,Add student,TC_ADD_STUDENT.json,file:TC_ADD_STUDENT_04.txt,Error: invalid student file format.
