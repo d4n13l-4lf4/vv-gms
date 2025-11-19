@@ -5,7 +5,7 @@ import pytest
 
 command_ids = [
     'TC_ADD_COURSE',
-    'TC_REPORT'
+    'TC_REPORT',
     'TC_REMOVE_COURSE',
 ]
 

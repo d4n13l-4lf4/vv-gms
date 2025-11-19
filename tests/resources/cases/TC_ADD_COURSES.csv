@@ -5,3 +5,4 @@ TC_ADD_COURSE_03,Add courses,TC_ADD_COURSES.json,file:TC_ADD_COURSE_03.csv,Error
 TC_ADD_COURSE_04,Add courses,TC_ADD_COURSES.json,file:TC_ADD_COURSE_04.docx,"Error: Invalid input type file, or arguments. Use: <CourseID> <CourseName>"
 TC_ADD_COURSE_05,Add courses,TC_ADD_COURSES.json,,"Error: Invalid input type file, or arguments. Use: <CourseID> <CourseName>"
 TC_ADD_COURSE_06,Add courses,TC_ADD_COURSES.json,file:TC_ADD_COURSE_06.csv,"Error: Invalid input type file, or arguments. Use: <CourseID> <CourseName>"
+TC_ADD_COURSE_07,Add courses,TC_ADD_COURSES.json,file:TC_ADD_COURSE_07.csv,"Error: Invalid input type file, or arguments. Use: <CourseID> <CourseName>"
