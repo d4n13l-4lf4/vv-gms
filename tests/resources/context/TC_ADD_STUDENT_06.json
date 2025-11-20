@@ -1,0 +1,15 @@
+{
+  "students": {
+    "11111": {
+      "student_id": "11111",
+      "student_name": "Old Name",
+      "courses": ["CS101"]
+    }
+  },
+  "courses": {
+    "CS101": { "course_id": "CS101", "course_name": "Intro" },
+    "CS102": { "course_id": "CS102", "course_name": "Advanced" }
+  },
+  "assignments": {},
+  "grades": {}
+}

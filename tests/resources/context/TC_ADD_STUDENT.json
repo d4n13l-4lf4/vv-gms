@@ -1,8 +1,11 @@
 {
-  "courses": {},
-  "assignments": {},
-  "grades": {},
   "students": {},
-  "teachers": {},
-  "course_teacher": {}
+  "courses": {
+    "CS101": {
+      "course_id": "CS101",
+      "course_name": "Intro to Computer Science"
+    }
+  },
+  "assignments": {},
+  "grades": {}
 }
