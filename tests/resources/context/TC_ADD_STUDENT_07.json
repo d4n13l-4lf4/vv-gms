@@ -1,0 +1,14 @@
+{
+  "students": {
+    "11111": {
+      "student_id": "11111",
+      "student_name": "Jane Smith",
+      "courses": ["CS101"]
+    }
+  },
+  "courses": {
+    "CS101": { "course_id": "CS101", "course_name": "Intro" }
+  },
+  "assignments": {},
+  "grades": {}
+}

@@ -1,6 +1,9 @@
 TEST_CASE_ID,CMD,CONTEXT,INPUTS,EXPECTED_OUTPUTS
-TC_ADD_GRADE_01,Add grade,TC_ADD_COURSE.json,file:TC_ADD_GRADE_01.csv,Added grade 9.5 for student 10001 in CS101 - A1.
-TC_ADD_GRADE_02,Add grade,TC_ADD_COURSE.json,file:TC_ADD_GRADE_02.csv,Course CS999 does not exist in 'courses'.
-TC_ADD_GRADE_03,Add grade,TC_ADD_COURSE.json,file:TC_ADD_GRADE_03.csv,Student 99999 does not exist in 'students'.
-TC_ADD_GRADE_04,Add grade,TC_ADD_COURSE.json,file:TC_ADD_GRADE_04.csv,Grade must be a number.
-TC_ADD_GRADE_05,Add grade,TC_ADD_COURSE.json,file:TC_ADD_GRADE_05.csv,Grade already exists for this student and assignment. Use 'edit grade' instead.
+TC_ADD_GRADE_01,Add grade,TC_ADD_GRADE.json,"CS101|10001|A1|9.5","Grade 9.5 recorded for Student 10001 in assignment A1 of course CS101."
+TC_ADD_GRADE_02,Add grade,TC_ADD_GRADE.json,"CS999|10001|A1|80","Error: Student or Assignment not found."
+TC_ADD_GRADE_03,Add grade,TC_ADD_GRADE.json,"CS101|99999|A1|75","Error: Student or Assignment not found."
+TC_ADD_GRADE_04,Add grade,TC_ADD_GRADE.json,"CS101|10001|A1|abc","Error: Invalid grade. Must be between 0 and 100."
+TC_ADD_GRADE_05,Add grade,TC_ADD_GRADE.json,"CS101|10001|A1|85","Error: Grade record already exists."
+TC_ADD_GRADE_06,Add grade,TC_ADD_GRADE.json,"CS101|10001|A1| ","Error: Invalid arguments. Use: add_grade <CourseID> <StudentID> <AssignmentName> <Grade>"
+TC_ADD_GRADE_07,Add grade,TC_ADD_GRADE.json,"CS101|10001|A999|80","Error: Student or Assignment not found."
+TC_ADD_GRADE_08,Add grade,TC_ADD_GRADE.json,"CS101|10001|A1|150","Error: Invalid grade. Must be between 0 and 100."

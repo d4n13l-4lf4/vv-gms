@@ -1,2 +1,0 @@
-TestCaseID,Goal,Input,ExpectedOutput
-TC_EDIT_GRADE_05,Error when assignment does not exist,course_id=CS101; student_id=123; assignmentName=HW2; new_grade=8,No grade found for student 123 in course CS101 for assignment 'HW2'.

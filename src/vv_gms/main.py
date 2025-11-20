@@ -3,7 +3,7 @@ from typing import Dict
 import click
 from click import prompt, echo
 
-from vv_gms.functions_celia import add_student, remove_student, add_grade, edit_grade
+from vv_gms.functions_celia import add_student, remove_student, edit_grade, add_grade
 from vv_gms.constant import CMD_ADD_COURSES, CMD_EXIT, CMD_GENERATE_REPORT, CMD_CALCULATE_STATISTICS, \
     CMD_ADD_ASSIGNMENT, CMD_REMOVE_COURSES, CMD_ADD_STUDENT, WELCOME_MESSAGE, CMD_REMOVE_STUDENT, CMD_ADD_GRADE, \
     CMD_EDIT_GRADE
@@ -51,9 +51,10 @@ def shell():
             facade.add_assignment()
         elif value == "6":
             course_id = prompt("Enter course ID")
+            student_id = prompt("Enter student ID")
             assigment_name = prompt("Enter assigment name")
-            grade = prompt("Enter grade: ")
-            add_grade(course_id, assigment_name, grade)
+            new_grade = prompt("Enter grade: ")
+            add_grade(course_id,student_id, assigment_name, new_grade)
         elif value == "7":
             course_id = prompt("Enter course ID")
             student_id = prompt("Enter student ID")

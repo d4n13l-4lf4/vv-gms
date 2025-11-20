@@ -7,7 +7,11 @@ command_ids = [
     'TC_ADD_ASSIGNMENT',
     'TC_CALC_STATS',
     'TC_REPORT',
-    'TC_MAIN_COMMAND'
+    'TC_ADD_GRADE',
+    'TC_MAIN_COMMAND',
+    'TC_ADD_STUDENT',
+    'TC_REMOVE_STUDENT',
+    'TC_EDIT_GRADE'
 ]
 
 
@@ -19,7 +23,13 @@ class TestMain:
         'TC_ADD_ASSIGNMENT.csv',
         'TC_CALC_STATS.csv',
         'TC_REPORT.csv',
-        'TC_MAIN_COMMAND.csv'
+        'TC_ADD_GRADE.csv',
+        'TC_MAIN_COMMAND.csv',
+        'TC_ADD_STUDENT.csv',
+        'TC_REMOVE_STUDENT.csv',
+        'TC_EDIT_GRADE.csv'
+
+
     ], ids=command_ids)
     def test_commands(self, runner, subtests, test_case_file, get_filename):
         test_case = get_filename(test_case_file, 'cases')
