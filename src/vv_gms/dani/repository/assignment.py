@@ -17,3 +17,4 @@ class AssignmentRepo:
     def save_assignment(self, course_id: str, assignment_name: str, weight: decimal.Decimal) -> None:
         assignments = self.__data_.get(course_id, [])
         assignments.append({'course_id': course_id, 'assignment_name': assignment_name, 'weight': weight})
+        self.__data_[course_id] = assignments

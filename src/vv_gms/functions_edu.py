@@ -121,7 +121,7 @@ def remove_teacher(course_id, teacher_id):
         print("Error: Teacher not assigned to this course.")
         return
 
-    del data["course_teacher"][course_id]
+    data["course_teacher"][course_id].remove(teacher_id)
 
     # Output del PDF
     print(f"Teacher {data['teachers'][teacher_id]['name']} removed from {course_id}.")

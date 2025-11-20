@@ -31,8 +31,7 @@
   },
   "teachers": {
     "TEACH_001": {
-      "teacher_id": "TEACH_001",
-      "teacher_name": "Teacher Name 01"
+      "name": "Teacher Name 01"
     }
   }
 }
