@@ -6,8 +6,9 @@ from click import prompt, echo
 from vv_gms.functions_celia import add_student, remove_student, edit_grade, add_grade
 from vv_gms.constant import CMD_ADD_COURSES, CMD_EXIT, CMD_GENERATE_REPORT, CMD_CALCULATE_STATISTICS, \
     CMD_ADD_ASSIGNMENT, CMD_REMOVE_COURSES, CMD_ADD_STUDENT, WELCOME_MESSAGE, CMD_REMOVE_STUDENT, CMD_ADD_GRADE, \
-    CMD_EDIT_GRADE
+    CMD_EDIT_GRADE, CMD_ADD_TEACHER, CMD_ASSIGN_TEACHER, CMD_REMOVE_TEACHER, CMD_CALCULATE_COURSE_STATISTICS
 from vv_gms.dani.factory import CommandFactory
+from vv_gms.functions_edu import add_teacher, assign_teacher, remove_teacher, calc_course_stats
 from vv_gms.shared import data_file
 
 commands = {
@@ -20,7 +21,11 @@ commands = {
     '7': CMD_EDIT_GRADE,
     '8': CMD_CALCULATE_STATISTICS,
     '9': CMD_GENERATE_REPORT,
-    '10': CMD_EXIT
+    '10': CMD_EXIT,
+    '11': CMD_ADD_TEACHER,
+    '12': CMD_ASSIGN_TEACHER,
+    '13': CMD_REMOVE_TEACHER,
+    '14': CMD_CALCULATE_COURSE_STATISTICS
 }
 
 def print_menu(cmds: Dict[str, str]):
@@ -68,6 +73,20 @@ def shell():
         elif value == "10":
             echo("Exit")
             break
+        elif value == "11":
+            filename = prompt("Enter teacher file name")
+            add_teacher(filename)
+        elif value == "12":
+            course_id = prompt("Enter course ID")
+            teacher_id = prompt("Enter teacher ID")
+            assign_teacher(course_id,teacher_id)
+        elif value == "13":
+            course_id = prompt("Enter course ID")
+            teacher_id = prompt("Enter teacher ID")
+            remove_teacher(course_id,teacher_id)
+        elif value == "14":
+            course_id = prompt("Enter course ID")
+            calc_course_stats(course_id)
         else:
             echo(f"Invalid option. Please choose one of {', '.join(commands.keys())}")
 
