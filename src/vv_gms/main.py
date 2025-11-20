@@ -21,11 +21,11 @@ commands = {
     '7': CMD_EDIT_GRADE,
     '8': CMD_CALCULATE_STATISTICS,
     '9': CMD_GENERATE_REPORT,
-    '10': CMD_EXIT,
-    '11': CMD_ADD_TEACHER,
-    '12': CMD_ASSIGN_TEACHER,
-    '13': CMD_REMOVE_TEACHER,
-    '14': CMD_CALCULATE_COURSE_STATISTICS
+    '10': CMD_ADD_TEACHER,
+    '11': CMD_ASSIGN_TEACHER,
+    '12': CMD_REMOVE_TEACHER,
+    '13': CMD_CALCULATE_COURSE_STATISTICS,
+    '14': CMD_EXIT,
 }
 
 def print_menu(cmds: Dict[str, str]):
@@ -71,22 +71,22 @@ def shell():
         elif value == "9":
             facade.generate_report()
         elif value == "10":
-            echo("Exit")
-            break
-        elif value == "11":
             filename = prompt("Enter teacher file name")
             add_teacher(filename)
-        elif value == "12":
+        elif value == "11":
             course_id = prompt("Enter course ID")
             teacher_id = prompt("Enter teacher ID")
             assign_teacher(course_id,teacher_id)
-        elif value == "13":
+        elif value == "12":
             course_id = prompt("Enter course ID")
             teacher_id = prompt("Enter teacher ID")
             remove_teacher(course_id,teacher_id)
-        elif value == "14":
+        elif value == "13":
             course_id = prompt("Enter course ID")
             calc_course_stats(course_id)
+        elif value == "14":
+            echo("Exit")
+            break
         else:
             echo(f"Invalid option. Please choose one of {', '.join(commands.keys())}")
 
