@@ -1,0 +1,32 @@
+{
+  "courses": {
+    "CS101": { "course_name": "Introduction to Computer Science" },
+    "CS202": { "course_name": "Data Structures" },
+    "CS310": { "course_name": "Software Engineering Project" },
+    "CS500": { "course_name": "Advanced Topics in Computing" }
+  },
+  "assignments": {
+    "A1": { "course_id": "CS101", "title": "Lab 1" },
+    "A2": { "course_id": "CS101", "title": "Lab 2" },
+    "B1": { "course_id": "CS202", "title": "Project Part 1" },
+    "B2": { "course_id": "CS202", "title": "Project Part 2" }
+  },
+  "grades": {
+    "CS101": [
+      { "student_id": "10001", "assignment_name": "A1", "grade": 8.5 },
+      { "student_id": "20001", "assignment_name": "A2", "grade": 7.0 }
+    ],
+    "CS202": [
+      { "student_id": "20001", "assignment_name": "B1", "grade": 7.0 },
+      { "student_id": "20001", "assignment_name": "B2", "grade": 6.5 }
+    ]
+  },
+  "students": {
+    "10001": { "student_name": "Alice Johnson" },
+    "10002": { "student_name": "Bob Smith" },
+    "20001": { "student_name": "Charlie Brown" },
+    "30001": { "student_name": "Dana White" }
+  },
+  "course_teacher": {},
+  "teachers": {}
+}

@@ -1,0 +1,14 @@
+TEST_CASE_ID,CMD,CONTEXT,INPUTS,EXPECTED_OUTPUTS
+TC_ADD_STUDENT_01,Add student,TC_ADD_STUDENT.json,file:TC_ADD_STUDENT_01.csv,List of students added to the system.
+TC_ADD_STUDENT_02,Add student,TC_ADD_STUDENT.json,file:TC_ADD_STUDENT_02.txt,List of students added to the system.
+TC_ADD_STUDENT_03,Add student,TC_ADD_STUDENT.json,file:TC_ADD_STUDENT_03.csv,"Error: Invalid input type file, or arguments. Use: <StudentID> <StudentName> <CourseID>"
+TC_ADD_STUDENT_04,Add student,TC_ADD_STUDENT.json,file:TC_ADD_STUDENT_04.txt,Error: CourseID not found.
+TC_ADD_STUDENT_05,Add student,TC_ADD_STUDENT.json,file:TC_ADD_STUDENT_05.csv,"Error: Invalid input type file, or arguments. Use: <StudentID> <StudentName> <CourseID>"
+TC_ADD_STUDENT_06,Add student,TC_ADD_STUDENT_06.json,file:TC_ADD_STUDENT_06.csv,"Added student New Name (11111) to course CS102.|List of students added to the system."
+TC_ADD_STUDENT_07,Add student,TC_ADD_STUDENT_07.json,file:TC_ADD_STUDENT_07.csv,Error: StudentID already exists in this course.
+TC_ADD_STUDENT_08,Add student,TC_ADD_STUDENT.json,file:TC_ADD_STUDENT_08.csv,Student file is empty.
+TC_ADD_STUDENT_09,Add student,TC_ADD_STUDENT_09.json,file:TC_ADD_STUDENT_09.csv,"Error: CourseID not found."
+TC_ADD_STUDENT_10,Add student,TC_ADD_STUDENT.json,10,"File '10' does not exist."
+TC_ADD_STUDENT_11,Add student,TC_ADD_STUDENT.json,file:THIS_FILE_DOES_NOT_EXIST.csv,"File 'THIS_FILE_DOES_NOT_EXIST.csv' does not exist."
+TC_ADD_STUDENT_12,Add student,TC_ADD_STUDENT.json,file:TC_ADD_STUDENT_12.txt,"Error: Invalid input type file, or arguments. Use: <StudentID> <StudentName> <CourseID>"
+TC_ADD_STUDENT_13,Add student,TC_ADD_STUDENT.json,file:TC_ADD_STUDENT_13.txt,"List of students added to the system."

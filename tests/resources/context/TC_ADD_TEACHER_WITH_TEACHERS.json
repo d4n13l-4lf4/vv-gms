@@ -1,0 +1,10 @@
+{
+  "courses": {},
+  "assignments": {},
+  "grades": {},
+  "students": {},
+  "teachers": {
+    "TC01": { "name": "Laura Gómez" }
+  },
+  "course_teacher": {}
+}

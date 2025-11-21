@@ -1,0 +1,3 @@
+CourseID;CourseName
+CS201;Algorithms
+CS202;Operating Systems

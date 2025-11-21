@@ -1,0 +1,2 @@
+StudentID\tStudentName\tCourseID
+55555\tTab Student\tCS101

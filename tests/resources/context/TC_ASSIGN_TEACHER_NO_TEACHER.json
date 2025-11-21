@@ -1,0 +1,13 @@
+{
+  "courses": {
+    "CS101": {
+      "course_id": "CS101",
+      "course_name": "Computing"
+    }
+  },
+  "assignments": {},
+  "grades": {},
+  "students": {},
+  "teachers": {},
+  "course_teacher": {}
+}

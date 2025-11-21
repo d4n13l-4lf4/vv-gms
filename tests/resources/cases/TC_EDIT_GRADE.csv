@@ -1,0 +1,7 @@
+TEST_CASE_ID,CMD,CONTEXT,INPUTS,EXPECTED_OUTPUTS
+TC_EDIT_GRADE_01,Edit grade,TC_EDIT_GRADE.json,"CS101|123|HW1|92","Grade updated: Course CS101, Student 123, HW1 = 92.0."
+TC_EDIT_GRADE_02,Edit grade,TC_EDIT_GRADE.json,"CS999|123|HW1|88","Error: Grade record not found."
+TC_EDIT_GRADE_03,Edit grade,TC_EDIT_GRADE.json,"CS101|123|HW1|abc","Error: Invalid grade. Must be between 0 and 100."
+TC_EDIT_GRADE_04,Edit grade,TC_EDIT_GRADE.json,"CS101|123|HW1|150","Error: Invalid grade. Must be between 0 and 100."
+TC_EDIT_GRADE_05,Edit grade,TC_EDIT_GRADE.json,"CS101|999|HW1|75","Error: Grade record not found."
+TC_EDIT_GRADE_06,Edit grade,TC_EDIT_GRADE.json,"CS101|123|HW2|80","Error: Grade record not found."

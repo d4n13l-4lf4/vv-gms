@@ -1,0 +1,31 @@
+{
+  "courses": {
+    "CS101": {
+      "course_name": "Intro to CS"
+    }
+  },
+
+  "students": {
+    "10001": { "name": "Alice" },
+    "99999": { "name": "Ghost Student" }
+  },
+
+  "assignments": {
+    "CS101": [
+      { "assignment_name": "A1" }
+    ]
+  },
+
+  "grades": {
+    "CS101": [
+      {
+        "student_id": "10001",
+        "assignment_name": "A1",
+        "grade": 85
+      }
+    ]
+  },
+
+  "teachers": {},
+  "course_teacher": {}
+}

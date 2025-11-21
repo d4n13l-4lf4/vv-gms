@@ -1,0 +1,8 @@
+TEST_CASE_ID,CMD,CONTEXT,INPUTS,EXPECTED_OUTPUTS
+TC_REMOVE_STUDENT_01,Remove student,TC_REMOVE_STUDENT.json,10001|CS101,"Student 10001 removed from course CS101.|Warning: Removing a student will delete all associated grades."
+TC_REMOVE_STUDENT_02,Remove student,TC_REMOVE_STUDENT.json,99999|CS101,"Error: StudentID not found."
+TC_REMOVE_STUDENT_03,Remove student,TC_REMOVE_STUDENT.json,10001|CS999,"Error: CourseID not found."
+TC_REMOVE_STUDENT_04,Remove student,TC_REMOVE_STUDENT.json,10001|,"Error: CourseID not found."
+TC_REMOVE_STUDENT_05,Remove student,TC_REMOVE_STUDENT.json,30001|CS500,"Student 30001 removed from course CS500.|Warning: Removing a student will delete all associated grades."
+TC_REMOVE_STUDENT_06,Remove student,TC_REMOVE_STUDENT.json,10002|CS101,"Student 10002 removed from course CS101.|Warning: Removing a student will delete all associated grades."
+TC_REMOVE_STUDENT_07,Remove student,TC_REMOVE_STUDENT.json,"10001|","Error: CourseID not found."

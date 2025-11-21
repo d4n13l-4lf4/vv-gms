@@ -1,0 +1,17 @@
+
+CMD_ADD_COURSES = "Add courses"
+CMD_REMOVE_COURSES = "Remove course"
+CMD_ADD_STUDENT = "Add student"
+CMD_REMOVE_STUDENT = "Remove student"
+CMD_ADD_ASSIGNMENT = "Add assignment"
+CMD_ADD_GRADE = "Add grade"
+CMD_EDIT_GRADE = "Edit grade"
+CMD_CALCULATE_STATISTICS = "Calculate statistics"
+CMD_GENERATE_REPORT = "Generate report"
+CMD_EXIT = "Exit"
+WELCOME_MESSAGE = "Welcome to the grading management system"
+
+CMD_ADD_TEACHER = "Add teacher"
+CMD_ASSIGN_TEACHER = "Assign teacher"
+CMD_REMOVE_TEACHER = "Remove teacher"
+CMD_CALCULATE_COURSE_STATISTICS= "Calculate course statistics"

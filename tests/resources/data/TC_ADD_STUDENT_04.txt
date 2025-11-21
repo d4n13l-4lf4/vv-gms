@@ -1,0 +1,2 @@
+StudentID;StudentName;CourseID
+Lucía Ortega;55667;CS310

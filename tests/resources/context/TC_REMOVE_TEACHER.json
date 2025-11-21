@@ -1,0 +1,25 @@
+{
+  "courses": {
+    "CS101": {
+      "course_id": "CS101",
+      "course_name": "Computing"
+    }
+  },
+  "assignments": {},
+  "grades": {},
+  "students": {},
+  "teachers": {
+    "TC01": { "name": "Laura Gómez" },
+    "TC02": { "name": "Miguel Torres" },
+    "TC03": { "name": "Sofía Herrera" },
+    "TC04": { "name": "Andrés Ruiz" },
+    "TC05": { "name": "Valentina Pérez" },
+    "TC06": { "name": "Javier Morales" },
+    "TC07": { "name": "Camila Vargas" },
+    "TC08": { "name": "Diego Castillo" },
+    "TC09": { "name": "Paula Fernández" }
+  },
+  "course_teacher": {
+    "CS101": "TC01"
+  }
+}

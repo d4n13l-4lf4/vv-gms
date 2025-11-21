@@ -1,0 +1,6 @@
+TEST_CASE_ID,CMD,CONTEXT,INPUTS,EXPECTED_OUTPUTS
+TC_CALC_COURSE_STATS_01,Calculate course statistics,TC_REPORT_01.json,CS101,Course: CS101|Students evaluated: 2|Course Average: 60.00|Median: 60.00|Standard Deviation: 40.00
+TC_CALC_COURSE_STATS_02,Calculate course statistics,TC_CALC_COURSE_STATS_NO_ASSIGNMENTS.json,CS101,Error: No assignments defined for this course.
+TC_CALC_COURSE_STATS_03,Calculate course statistics,TC_CALC_COURSE_STATS_NO_COURSE.json,CS101,Error: CourseID not found.
+TC_CALC_COURSE_STATS_04,Calculate course statistics,TC_CALC_COURSE_STATS_NO_GRADES.json,CS101,Error: No grades recorded for this course.
+TC_CALC_COURSE_STATS_05,Calculate course statistics,TC_CALC_COURSE_STATS_NO_GRADES.json,"""""",Error: Invalid arguments. Use: calc_course_stats <CourseID>
