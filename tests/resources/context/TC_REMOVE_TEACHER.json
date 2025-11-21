@@ -20,6 +20,6 @@
     "TC09": { "name": "Paula Fernández" }
   },
   "course_teacher": {
-    "CS101": "TC01"
+    "CS101": ["TC01"]
   }
 }

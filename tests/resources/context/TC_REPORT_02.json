@@ -27,12 +27,11 @@
     }
   },
   "course_teacher": {
-    "CS101": "TEACH_001"
+    "CS101": ["TEACH_001"]
   },
   "teachers": {
     "TEACH_001": {
-      "teacher_id": "TEACH_001",
-      "teacher_name": "Teacher Name 01"
+      "name": "Teacher Name 01"
     }
   }
 }

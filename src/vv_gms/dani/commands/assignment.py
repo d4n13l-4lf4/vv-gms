@@ -32,7 +32,7 @@ class AssignmentService:
 
         assignments = self.__assignment_repo_.get_assignments_by_course_id(course_id)
         current_weight = reduce(lambda acc, asg: asg['weight'] + acc, assignments, 0)
-        if current_weight + decimal_weight > 100:
+        if Decimal(current_weight) + decimal_weight > 100:
             raise CustomException("Invalid total assignment weights can't exceed 100.")
         self.__assignment_repo_.save_assignment(course_id, assignment_name, decimal_weight)
 
