@@ -78,7 +78,8 @@ dependencies = [
     "PyHamcrest==2.1.0",
     "pytest",
     "pytest-cov",
-
+    "python-docx",
+    "docx"
 ]
 
 [tool.coverage.run]
