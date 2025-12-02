@@ -130,10 +130,6 @@ def remove_teacher(course_id, teacher_id):
 
 # CALCULATE COURSE STATS
 def calc_course_stats(course_id: str):
-    # Error Case del PDF:
-    if not course_id or not course_id.strip('" ').strip():
-        print("Error: Invalid arguments. Use: calc_course_stats <CourseID>")
-        return
 
     data = load_data()
 
