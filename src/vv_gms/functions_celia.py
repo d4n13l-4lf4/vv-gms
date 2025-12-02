@@ -120,20 +120,20 @@ def add_grade(course_id, student_id, assignmentName, grade):
     courses = data.get("courses", {})
     students = data.get("students", {})
     assignments = data.get("assignments", {})
-    grades_by_course = data.get("grades", {})
+    # grades_by_course = data.get("grades", {})
 
 
     if course_id not in courses:
         print("Error: Student or Assignment not found.")
         return
 
-    course_existing_grades = grades_by_course.get(course_id, [])
-    student_has_course = any(
-        g.get("student_id") == student_id
-        for g in course_existing_grades
-    )
+    #course_existing_grades = grades_by_course.get(course_id, [])
+    #student_has_course = any(
+    #    g.get("student_id") == student_id
+    #    for g in course_existing_grades
+    #)
 
-    if student_id not in students or not student_has_course:
+    if student_id not in students: # or not student_has_course:
         print("Error: Student or Assignment not found.")
         return
 
@@ -158,7 +158,7 @@ def add_grade(course_id, student_id, assignmentName, grade):
         return
 
     grades_by_course = data["grades"]
-    course_grades = grades_by_course[course_id]
+    course_grades = grades_by_course.get(course_id, [])
 
     for g in course_grades:
         if (g.get("student_id") == student_id and
@@ -173,6 +173,7 @@ def add_grade(course_id, student_id, assignmentName, grade):
         "grade": numeric_grade
     })
 
+    data["grades"][course_id] = course_grades
     print(
         f"Grade {numeric_grade} recorded for Student {student_id} in assignment {assignmentName} of course {course_id}."
     )

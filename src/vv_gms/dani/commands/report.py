@@ -20,7 +20,7 @@ from dataclasses import asdict
 
 def dump_report_data(report: Report, writer):
     writer(f"Course: {report.course['course_id']} - {report.course['course_name']}")
-    writer(f"Teacher {report.teacher['teacher_name']}")
+    writer(f"Teacher {report.teacher['name']}")
     writer(f"Average: {report.stats.average}")
     writer(f"Lowest: {report.stats.lowest}")
     writer(f"Highest: {report.stats.best}")

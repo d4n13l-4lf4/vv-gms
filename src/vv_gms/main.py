@@ -58,7 +58,7 @@ def shell():
             course_id = prompt("Enter course ID")
             student_id = prompt("Enter student ID")
             assigment_name = prompt("Enter assigment name")
-            new_grade = prompt("Enter grade: ")
+            new_grade = prompt("Enter grade")
             add_grade(course_id,student_id, assigment_name, new_grade)
         elif value == "7":
             course_id = prompt("Enter course ID")
