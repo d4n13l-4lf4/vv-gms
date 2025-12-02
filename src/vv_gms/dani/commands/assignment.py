@@ -17,7 +17,7 @@ class AssignmentService:
         self.__course_repo_ = course_repo
 
     @validate({
-        'weight': between(0, 100, 'Invalid weight value. Must be integer 0-100.'),
+        #'weight': between(0, 100, 'Invalid weight value. Must be integer 0-100.'),
         'course_id': not_empty('Invalid arguments. Use: add_assignment <CourseID> <AssignmentName> [<Weight>]'),
         'assignment_name': not_empty('Invalid arguments. Use: add_assignment <CourseID> <AssignmentName> [<Weight>]'),
     })
