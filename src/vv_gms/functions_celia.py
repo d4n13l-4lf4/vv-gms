@@ -35,7 +35,8 @@ def add_student(filename):
             delimiter = ";"
 
     header_cols = [c.strip() for c in header_line.split(delimiter)] if header_line else []
-    if len(header_cols) < 3:
+    #if len(header_cols) < 3: THIS IS THE CORRECT ONE
+    if len(header_cols) < 4:
         print("Error: Invalid input type file, or arguments. Use: <StudentID> <StudentName> <CourseID>")
         return
 
@@ -120,18 +121,12 @@ def add_grade(course_id, student_id, assignmentName, grade):
     courses = data.get("courses", {})
     students = data.get("students", {})
     assignments = data.get("assignments", {})
-    # grades_by_course = data.get("grades", {})
 
 
     if course_id not in courses:
         print("Error: Student or Assignment not found.")
         return
 
-    #course_existing_grades = grades_by_course.get(course_id, [])
-    #student_has_course = any(
-    #    g.get("student_id") == student_id
-    #    for g in course_existing_grades
-    #)
 
     if student_id not in students: # or not student_has_course:
         print("Error: Student or Assignment not found.")
@@ -153,7 +148,9 @@ def add_grade(course_id, student_id, assignmentName, grade):
         print("Error: Invalid grade. Must be between 0 and 100.")
         return
 
-    if numeric_grade < 0 or numeric_grade > 100:
+    #if numeric_grade < 0 or numeric_grade > 100: THIS IS THE CORRECT ONE
+    if numeric_grade <= 0 or numeric_grade >= 100:
+
         print("Error: Invalid grade. Must be between 0 and 100.")
         return
 
@@ -211,4 +208,4 @@ def edit_grade(course_id, student_id, assignmentName, new_grade):
         return
 
     print(f"Grade updated: Course {course_id}, Student {student_id}, {assignmentName} = {numeric_grade}.")
-    save_data(data)
+    # save_data(data) DEBERÍA IR EL SAVE DATA
